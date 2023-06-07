@@ -16,8 +16,38 @@ public class Sort012 {
             0s 1s and 2s are segregated
     into ascending order.*/
 
-    public static void sort012(int a[], int n)
-    {
-        Arrays.sort(a);
+    public static void sort012(int a[], int n) {
+        int i = 0, countOfZero = 0, countOfOne = 0, countOfTwo = 0;
+        for (int number : a) {
+            switch (number) {
+                case 0:
+                    countOfZero++;
+                    break;
+                case 1:
+                    countOfOne++;
+                    break;
+                case 2:
+                    countOfTwo++;
+                    break;
+            }
+        }
+        while (countOfZero > 0) {
+            a[i++] = 0;
+            countOfZero--;
+        }
+        while (countOfOne > 0) {
+            a[i++] = 1;
+            countOfOne--;
+        }
+        while (countOfTwo > 0) {
+            a[i++] = 2;
+            countOfTwo--;
+        }
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {0, 2, 1, 2, 0};
+        sort012(arr, 5);
+        System.out.println(Arrays.toString(arr));
     }
 }
