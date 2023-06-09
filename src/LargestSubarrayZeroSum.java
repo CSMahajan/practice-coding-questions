@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class LargestSubarraySum {
+public class LargestSubarrayZeroSum {
 
     /*
     Largest subarray with 0 sum
@@ -15,7 +15,7 @@ A[] = {15,-2,2,-8,1,7,10,23}
 Output: 5
 Explanation: The largest subarray with
 sum 0 will be -2 2 -8 1 7.
-    */
+*/
 
     public static int maxLengthOfLargestSubarraySum(int arr[], int n) {
         // Your code here
