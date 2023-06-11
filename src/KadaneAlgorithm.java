@@ -20,18 +20,14 @@ public class KadaneAlgorithm {
 
     public static long maxSubarraySum(int arr[], int n) {
         // Your code here
-        long max = Long.MIN_VALUE;
-        long sum = 0;
+        if (n == 0) return 0;
+        long sum = 0, maxSubarraySum = Long.MIN_VALUE;
         for (int i = 0; i < n; i++) {
             sum += arr[i];
-            if (max < sum) {
-                max = sum;
-            }
-            if (sum < 0) {
-                sum = 0;
-            }
+            maxSubarraySum = Math.max(sum, maxSubarraySum);
+            sum = sum < 0 ? 0 : sum;
         }
-        return max;
+        return maxSubarraySum;
     }
 
     public static void main(String[] args) {
