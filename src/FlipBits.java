@@ -15,7 +15,8 @@ So, the final array comes out to be {1, 1, 1, 1, 1} which contains five ones and
 Example:
 Input: arr= {1, 0, 0, 1, 0}
 Output:4
-Explanation: if we flip the subarray {0,0,1,0} which gives the total array {1,1,1,0,1} hence total 1's are 4
+Explanation: if we flip the subarray {0,0,1,0} which gives the total array {1,1,1,0,1} or
+flip only {0,0} which gives total array {1,1,1,1,0} hence total 1's are 4
 */
 public class FlipBits {
     public static int flipBits(int[] arr,int n) {
