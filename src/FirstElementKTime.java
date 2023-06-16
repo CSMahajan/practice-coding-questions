@@ -23,7 +23,7 @@ import java.util.Map;
 public class FirstElementKTime {
 
     public static int firstElementKTime(int[] a, int n, int k) {
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < a.length; i++) {
             map.put(a[i], map.getOrDefault(a[i], 0) + 1);
             if (map.get(a[i]) == k) {
