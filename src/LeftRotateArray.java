@@ -19,8 +19,7 @@ public class LeftRotateArray {
     // Method 1
     // To left rotate arr[]
     // of size N by D
-    void leftRotateNewTempArray(int arr[], int d, int n)
-    {
+    void leftRotateNewTempArray(int arr[], int d, int n) {
         // Creating temp array of size d
         int temp[] = new int[d];
 
@@ -63,16 +62,14 @@ public class LeftRotateArray {
     We get [2, 3, 4, 5, 1] after first rotation and [ 3, 4, 5, 1, 2] after second rotation.*/
     // Method 1
     // To rotate left by D elements
-    void leftRotateRecursive(int arr[], int d, int n)
-    {
+    void leftRotateRecursive(int arr[], int d, int n) {
         for (int i = 0; i < d; i++)
             leftRotatebyOne(arr, n);
     }
 
     // Method 2
     // To rotate left one by one
-    void leftRotatebyOne(int arr[], int n)
-    {
+    void leftRotatebyOne(int arr[], int n) {
         int i, temp;
         temp = arr[0];
         for (i = 0; i < n - 1; i++)
@@ -93,8 +90,7 @@ public class LeftRotateArray {
     keep moving arr[I+d] to arr[I] and finally store temp at the right place.*/
     // Method 1
     // To left rotate arr[] of size N by D
-    void leftRotateGCDJugglingAlgorithm(int arr[], int d, int n)
-    {
+    void leftRotateGCDJugglingAlgorithm(int arr[], int d, int n) {
         // To handle if d >= n
         d = d % n;
         int i, j, k, temp;
@@ -123,8 +119,7 @@ public class LeftRotateArray {
 
     // Method 2
     // To get gcd of a and b
-    int gcd(int a, int b)
-    {
+    int gcd(int a, int b) {
         if (b == 0)
             return a;
         else

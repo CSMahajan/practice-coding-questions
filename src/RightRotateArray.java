@@ -23,8 +23,7 @@ public class RightRotateArray {
     //Auxiliary Space: O(D)
     // Method 1
     // To right rotate arr[] of size N by D
-    void rightRotateNewTempArray(int arr[], int d, int n)
-    {
+    void rightRotateNewTempArray(int arr[], int d, int n) {
 
         // If arr is rotated n times then
         // you get the same array
