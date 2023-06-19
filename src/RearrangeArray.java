@@ -32,20 +32,20 @@ public class RearrangeArray {
     * After the increment operation of the first step, every element holds both old values and new values.
     * An old value can be obtained by arr[i]%n and a new value can be obtained by arr[i]/n.
     */
-    public static void rearrange(int arr[], int n)
+    public static void rearrange(long arr[], int n)
     {
         // First step: Increase all values by
         // (arr[arr[i]]%n)*n
         for (int i = 0; i < n; i++)
-            arr[i] += (arr[arr[i]] % n) * n;
+            arr[i] += (arr[(int) arr[i]] % n) * n;
 
         // Second Step: Divide all values by n
         for (int i = 0; i < n; i++)
-            arr[i] /= n;
+            arr[(int) i] /= n;
     }
 
     public static void main(String[] args) {
-        int arr[] = {4,0,2,1,3};
+        long arr[] = {4,0,2,1,3};
         int n = arr.length;
         rearrange(arr, n);
         System.out.println(Arrays.toString(arr));
