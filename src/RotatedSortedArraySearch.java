@@ -23,56 +23,81 @@ Explanation : 11 is not present in the given array.
 */
 public class RotatedSortedArraySearch {
 
-    public static int search(int[] arr, int low, int high, int key) {
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-
-            if (arr[mid] == key) {
-                // if we have found our target element
-                // return the index of target element
+    public static int searchInUniqueElementArray(int A[], int l, int h, int key)
+    {
+        // l: The starting index
+        // h: The ending index, you have to search the key in this range
+        // Complete this function
+        int n = A.length;
+        int low = 0, high = n - 1;
+        while(low <= high) {
+            int mid = low + (high - low)/2;
+            if(A[mid] == key) {
                 return mid;
             }
+            if(A[low] <= A[mid]) {
+                //Left Half Sorted
+                if(A[low] <= key && key <= A[mid]) {
+                    //Key present in left half
+                    high = mid - 1;
+                } else {
+                    //Key present in right half
+                    low = mid + 1;
+                }
+            } else {
+                //Right Half Sorted
+                if(A[mid] <= key && key <= A[high]) {
+                    //Key present in right half
+                    low = mid + 1;
+                } else {
+                    //Key present in left half
+                    high = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
 
-            if (arr[mid] == arr[low] && arr[mid] == arr[high]) {
-                // It may happen in case of duplicates
-
+    public static int searchInDuplicateElementArray(int A[], int l, int h, int key)
+    {
+        // l: The starting index
+        // h: The ending index, you have to search the key in this range
+        // Complete this function
+        int n = A.length;
+        int low = 0, high = n - 1;
+        while(low <= high) {
+            int mid = low + (high - low)/2;
+            if(A[mid] == key) {
+                return mid;
+            }
+            if(A[low] == A[mid] && A[mid] == A[high]) {
+                // It may happen in case of duplicate elements in array
+                // example: A = { 3, 3, 1, 2, 3, 3 }
+                //To trim the search space below is done
                 ++low;
                 --high;
                 continue;
             }
-
-            if (arr[low] <= arr[mid]) {
-                // This means array is sorted from index low to
-                // mid We will check that if target element lies
-                // in left half or not
-
-                if (key >= arr[low] && key < arr[mid])
+            if(A[low] <= A[mid]) {
+                //Left Half Sorted
+                if(A[low] <= key && key <= A[mid]) {
+                    //Key present in left half
                     high = mid - 1;
-
-                else
-                    // This means that our target lies in other
-                    // half of array So we shift low to mid+1 to
-                    // search in right half
+                } else {
+                    //Key present in right half
                     low = mid + 1;
-            }
-
-            else {
-                // This means array is sorted between mid and
-                // high index
-
-                // This will check our target element is
-                // in right half or not
-                if (key <= arr[high] && key > arr[mid])
+                }
+            } else {
+                //Right Half Sorted
+                if(A[mid] <= key && key <= A[high]) {
+                    //Key present in right half
                     low = mid + 1;
-
-                else
-                    // Means our target is in left half
+                } else {
+                    //Key present in left half
                     high = mid - 1;
+                }
             }
         }
-
-        // If target element is not present
-
         return -1;
     }
 
@@ -81,6 +106,6 @@ public class RotatedSortedArraySearch {
         int n = arr.length;
 
         int key = 3;
-        System.out.println(search(arr, 0, n - 1, key));
+        System.out.println(searchInDuplicateElementArray(arr, 0, n - 1, key));
     }
 }
