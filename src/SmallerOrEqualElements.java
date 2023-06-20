@@ -39,4 +39,12 @@ public class SmallerOrEqualElements {
         }
         return list;
     }
+
+    public static void main(String[] args) {
+        int a[] = {5,4,3,2,1};
+        int n = a.length;
+        int b[] = {3,4};
+        int m = b.length;
+        System.out.println(countSmallerOrEqual(a,b,n,m));
+    }
 }
