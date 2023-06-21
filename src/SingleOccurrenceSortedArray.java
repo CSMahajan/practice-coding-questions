@@ -39,8 +39,9 @@ public class SingleOccurrenceSortedArray {
             If we carefully observe, the element which appears only once,
             we get that on left half of that element we will have elements
             with index (even,odd) so we need to eliminate if we are in left half to find single element
+            Similarly for right half equal value pairs have indexes as (odd,even)
             */
-            if((mid % 2 == 1 && arr[mid] == arr[mid - 1]) || (mid % 2 == 0 && arr[mid] == arr[mid - 1])) {
+            if((mid % 2 == 1 && arr[mid] == arr[mid - 1]) || (mid % 2 == 0 && arr[mid] == arr[mid + 1])) {
                 low = mid + 1;  //eliminate the left half, i.e. we are on left half and need to search on right half
             } else {
                 //similar conditions vice-versa way can also be written for presence in right half but not required
@@ -51,7 +52,7 @@ public class SingleOccurrenceSortedArray {
     }
 
     public static void main(String[] args) {
-        int arr[] = {1, 1, 2, 2, 3, 3, 4, 50, 50, 65, 65};
+        int arr[] = {-96,-96,-93,-93,-80,-80,-77,-77,-56,-56,-43,-43,-30,-30,-29,-29,-14,-14,-10,-10,8,8,29,29,30,30,38,44,44,46,46,79,79,87,87,88,88,94,94};
         System.out.println(findOnce(arr, arr.length));
     }
 }
