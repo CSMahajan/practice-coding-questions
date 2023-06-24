@@ -184,6 +184,6 @@ public class CombinationSum {
         CombinationSum cs = new CombinationSum();
         int candidates[] = {2,3,6,7};
         int target = 7;
-        //System.out.println(cs.combinationSum(candidates,target));
+        System.out.println(cs.combinationSum(candidates,target));
     }
 }
