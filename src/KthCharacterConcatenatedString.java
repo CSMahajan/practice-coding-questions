@@ -11,7 +11,7 @@ Next N lines: String $S_i$
 Next line Q(number of questions)
 Next Q lines : Three space-separated integers L, R and K
 Output Format
-For each question, print the $K^{th}$ character of the concatenated string in a new line.
+For each question, print the K^th character of the concatenated string in a new line.
 Sample Test Cases
 Sample Input                 Sample Output
 5                                 c
@@ -28,7 +28,7 @@ Explanation
 Q1 Grouped String - ccccc. 3rd character is c
 Q2 Grouped String - aaaaabbbbbcccccdddddeeeee. 16th character is d
 Q3 Grouped String - cccccdddddeeeee. 15th character is e
-Note: It is always guaranteed that the $K^{th}$ position is valid
+Note: It is always guaranteed that the K^th position is valid
 */
 
 import java.util.Arrays;
