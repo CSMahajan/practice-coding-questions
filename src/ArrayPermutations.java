@@ -72,6 +72,10 @@ public class ArrayPermutations {
         for(int i = index; i < nums.length; i++) {
             //Swapping logic is done for every starting i to start to swap from itself with every other element in array
             swap(i, index, nums);
+            /*While calling recursively, we are giving first parameter as index + 1 because firstly we have swapped index and i and secondly if we pass i + 1, it will cause stack overflow or segmentation fault or ArrayIndexOutOfBoundsException
+            Example: let i = 0, and index = nums.length -1(index at last element) and
+            we swapped it and then calling with i + 1 would make i = nums.length which gives ArrayIndexOutOfBoundsException or
+            stack overflow error while accessing or later we are swapping again to consider all permutations*/
             findAllPermutationsSwapping(index + 1, nums, allPermutationList);
             //To consider other permutations by swapping again we will keep the array as it is
             swap(i, index, nums);
