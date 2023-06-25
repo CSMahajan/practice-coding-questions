@@ -12,6 +12,8 @@ public class MissingNumber {
     A[] = {1,2,3,5}
     Output: 4*/
     //This way is easy to understand but can cause int overflow
+    //i.e.int variable sum would not store max value from constraint like N=10^5, so sum = 10^5*(10^5+1)/2
+    //This will cause overflow
     public static int MissingNumber(int array[], int n) {
         // Your Code Here
         int missingNumber, arraySum = 0, totalPossibleSum = 0;
