@@ -15,6 +15,26 @@ appears exactly once.
  */
 public class SingleOccurrenceSortedArray {
 
+    //TC:O(N)
+    //SC:O(1)
+    //XOR
+    //Easiest way to implement and understand
+    //Trick: XOR of two same numbers is 0 and XOR with 0 of any number is that number
+    //Example: 1^1=0 and 1^0=1
+    //When we xor of all array the final answer is single appearing element
+    //This solution can work for not sorted arrays as well
+    public static int findOnceXOR(int arr[], int n) {
+        // Complete this function
+        int xor = 0;
+        for (int i = 0; i < n; i++) {
+            xor ^= arr[i];
+        }
+        return xor;
+    }
+
+    //TC:O(log(N))
+    //SC:O(1)
+    //Binary Search
     public static int findOnce(int arr[], int n) {
         // Complete this function
         if (n == 1) {
@@ -53,5 +73,7 @@ public class SingleOccurrenceSortedArray {
     public static void main(String[] args) {
         int arr[] = {1, 1, 2, 2, 3, 3, 4, 50, 50, 65, 65};
         System.out.println(findOnce(arr, arr.length));
+        int arr1[] = {1, 3, 4, 50, 1, 2, 2, 3, 50, 65, 65};
+        System.out.println(findOnceXOR(arr1, arr1.length));
     }
 }
