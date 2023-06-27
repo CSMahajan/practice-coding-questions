@@ -27,7 +27,7 @@ The minimum distance between cows, in this case, is 4,which also is the largest 
 */
 public class AggressiveCows {
 
-    /*TC:O(N*log(N)) + O(log(maxElement-minElement))
+    /*TC:O(N*log(N)) + O(log(maxElement-minElement)) * N
       N * log(N) for sorting the given array and
       O(log(maxElement-minElement)) for binary search for finding
       minimum distance between any counter which is max possible
