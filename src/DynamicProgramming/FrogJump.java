@@ -51,18 +51,19 @@ public class FrogJump {
     //SC:O(N),space for dp array
     //Bottom-Up Tabulation Approach
     public int minimumEnergyBottomUp(int[] arr, int n) {
-        int[] dp = new int[n + 1];
-        dp[1] = 0;
+        //for converting it to 0 to n - 1 based indexing
+        int[] dp = new int[n];
+        dp[0] = 0;
 
-        for (int i = 2; i <= n; i++) {
-            int oneStepJump = Math.abs(arr[i - 1] - arr[i - 2]) + dp[i - 1];
+        for (int i = 1; i < n; i++) {
+            int oneStepJump = Math.abs(arr[i] - arr[i - 1]) + dp[i - 1];
             int twoStepJump = Integer.MAX_VALUE;
-            if (i > 2) {
-                twoStepJump = Math.abs(arr[i - 1] - arr[i - 3]) + dp[i - 2];
+            if (i > 1) {
+                twoStepJump = Math.abs(arr[i] - arr[i - 2]) + dp[i - 2];
             }
             dp[i] = Math.min(oneStepJump, twoStepJump);
         }
-        return dp[n];
+        return dp[n - 1];
     }
 
 
@@ -71,17 +72,17 @@ public class FrogJump {
     //Bottom-Up Space Optimisation Approach
     public int minimumEnergySpaceOptimised(int[] arr, int n) {
         int previous1 = 0, previous2 = 0;
-        for (int i = 2; i <= n; i++) {
-            int oneStepJump = Math.abs(arr[i - 1] - arr[i - 2]) + previous2;
+        for (int i = 1; i < n; i++) {
+            int oneStepJump = Math.abs(arr[i] - arr[i - 1]) + previous1;
             int twoStepJump = Integer.MAX_VALUE;
-            if (i > 2) {
-                twoStepJump = Math.abs(arr[i - 1] - arr[i - 3]) + previous1;
+            if (i > 1) {
+                twoStepJump = Math.abs(arr[i] - arr[i - 2]) + previous2;
             }
             int currentEnergy = Math.min(oneStepJump, twoStepJump);
-            previous1 = previous2;
-            previous2 = currentEnergy;
+            previous2 = previous1;
+            previous1 = currentEnergy;
         }
-        return previous2;
+        return previous1;
     }
 
     public static void main(String[] args) {
