@@ -23,7 +23,7 @@ he will do fighting and earn 3 points so, maximum point is 11.
 */
 public class NinjaTraining {
 
-    public int maximumPointsTopDown(int points[][], int N) {
+    public int maximumPointsTopDown(int[][] points, int N) {
         //code here
         int[][] dp = new int[N][4];
         for (int[] row : dp) {
@@ -62,7 +62,7 @@ public class NinjaTraining {
 
     //Time Complexity: O(N*4*3), for three nested loops
     //Space Complexity: O(N*4), for an external dp array of size N*4
-    public int maximumPointsBottomUp(int points[][], int N) {
+    public int maximumPointsBottomUp(int[][] points, int N) {
         //code here
         int[][] dp = new int[N][4];
         /*
@@ -103,7 +103,7 @@ public class NinjaTraining {
 
     //Time Complexity: O(N*4*3), for three nested loops
     //Space Complexity: O(4), for an external previous array of size 4 to store only one (previous) row
-    public int maximumPointsSpaceOptimised(int points[][], int N) {
+    public int maximumPointsSpaceOptimised(int[][] points, int N) {
         //code here
         int[] previous = new int[4];
         /*
@@ -129,7 +129,7 @@ public class NinjaTraining {
         which adds current days task's points and gets the previous points (excluding current task as last days task) using temp array
         */
         for (int day = 1; day < N; day++) {
-            int temp[] = new int[4];
+            int[] temp = new int[4];
             for (int last = 0; last < 4; last++) {
                 temp[last] = 0;
                 for (int task = 0; task < 3; task++) {
