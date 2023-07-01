@@ -17,7 +17,7 @@ Example 2:
 Input: grid = [[1,2,3],[4,5,6]]
 Output: 12
 */
-public class MinimumPathSum {
+public class MinimumPathSumFixedStartingPointVariableEndingPoint {
 
     public int minPathSumTopDown(int[][] grid) {
         int n = grid.length;
@@ -127,13 +127,12 @@ public class MinimumPathSum {
 
 
     public static void main(String[] args) {
-        MinimumPathSum mps = new MinimumPathSum();
+        MinimumPathSumFixedStartingPointVariableEndingPoint mps = new MinimumPathSumFixedStartingPointVariableEndingPoint();
         int[][] obstacleGrid = {{1, 3, 1},
                 {1, 5, 1},
                 {4, 2, 1}};
         System.out.println(mps.minPathSumTopDown(obstacleGrid));
         System.out.println(mps.minPathSumBottomUp(obstacleGrid));
         System.out.println(mps.minPathSumSpaceOptimised(obstacleGrid));
-
     }
 }
