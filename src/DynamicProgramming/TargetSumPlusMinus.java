@@ -1,67 +1,71 @@
 package DynamicProgramming;
 
-/*
-Partitions with Given Difference
-
-Given an array arr, partition it into two subsets(possibly empty) such that their union is the original array.
-Let the sum of the element of these two subsets be S1 and S2. Given a difference d,
-count the number of partitions in which S1 is greater than or equal to S2 and the difference S1 and S2 is equal to d.
-since the answer may be large return it modulo 109 + 7.
-Example 1:
-Input:
-n = 4, d = 3
-arr[] =  { 5, 2, 6, 4}
-Output: 1
-Explanation:
-There is only one possible partition of this array.
-Partition : {6, 4}, {5, 2}. The subset difference between subset sum is: (6 + 4) - (5 + 2) = 3.
-Example 2:
-Input:
-n = 4, d = 0 arr[] = {1, 1, 1, 1}
-Output: 6
-*/
-
 import java.util.Arrays;
 
-public class PartitionWithGivenDifference {
+/*
+Target Sum
 
-    public int countPartitionsTopDown(int n, int d, int[] arr) {
-        // Code here
-        int mod = 1000000007;
+You are given an integer array nums and an integer target.
+You want to build an expression out of nums by adding one of the symbols '+' and '-'
+before each integer in nums and then concatenate all the integers.
+For example, if nums = [2, 1], you can add a '+' before 2 and a '-'
+before 1 and concatenate them to build the expression "+2-1".
+Return the number of different expressions that you can build, which evaluates to target.
+Example 1:
+Input: nums = [1,1,1,1,1], target = 3
+Output: 5
+Explanation: There are 5 ways to assign symbols to make the sum of nums be target 3.
+-1 + 1 + 1 + 1 + 1 = 3
++1 - 1 + 1 + 1 + 1 = 3
++1 + 1 - 1 + 1 + 1 = 3
++1 + 1 + 1 - 1 + 1 = 3
++1 + 1 + 1 + 1 - 1 = 3
+Example 2:
+Input: nums = [1], target = 1
+Output: 1
+
+*/
+public class TargetSumPlusMinus {
+
+    public int findTargetSumWaysTopDown(int[] nums, int target) {
+        int n = nums.length;
         int totalSum = 0;
-        for (int number : arr) {
+        for (int number : nums) {
             totalSum += number;
         }
         /*
+        Here we want to assign plus and minus sign to each element in an array such that after assigning signs the given target should be achieved as a sum.
+        So, there will be basically two groups/subsets, one having all positive signs elements(s1) and another having all negative signs(s2).
+        So there sum will be s1 + -(s2) = s1 - s2(because all negative numbers add up to bigger negative number.
+        This sum is equal to target, so this question becomes s1 - s2 = target
         Here we want to find how many different pairs of subsets s1 and s2 can be formed such that
-        difference between s1 and s2 is given difference d.We also know that totalSum is sum of s1 and s2.
-        So, totalSum = s1 + s2; and s1 - s2 = d; where s1 > s2. So putting s1 from first equation into second gives us:
-        (totalSum - s2) - s2 = d, gives totalSum - 2*s2 = d, which gives us:
-        s2 = (totalSum - d) / 2
+        difference between s1 and s2 is given target d.We also know that totalSum is sum of s1 and s2.
+        So, totalSum = s1 + s2; and s1 - s2 = target; where s1 > s2. So putting s1 from first equation into second gives us:
+        (totalSum - s2) - s2 = d, gives totalSum - 2*s2 = target, which gives us:
+        s2 = (totalSum - target) / 2
         So our target is getting changed basically for which we need to check total subsets count, so our target will be s2.
         We know that totalSum = s1+s2 that means totalSum should always be greater than given difference
         and also all numbers in array are 0 <= arr[i] and integers, so s2 is also going to be integer, so (totalSum - d)
         is also going to be even number/integer
         */
         //Checking edge cases
-        if (totalSum - d < 0) return 0;
-        if ((totalSum - d) % 2 == 1) return 0;
+        if (totalSum - target < 0) return 0;
+        if ((totalSum - target) % 2 == 1) return 0;
 
-        int s2 = (totalSum - d) / 2;
+        int s2 = (totalSum - target) / 2;
 
         int[][] dp = new int[n][s2 + 1];
         for (int[] row : dp) {
             Arrays.fill(row, -1);
         }
-        return countPartitionsTopDown(n - 1, s2, arr, dp) % mod;
+        return findTargetSumWaysTopDown(n - 1, s2, nums, dp);
     }
 
     //Time Complexity: O(N*target)
     //Reason: There are N*target states therefore at max ‘N*target’ new problems will be solved.
     //Space Complexity: O(N*target) + O(N)
     //Reason: We are using a recursion stack space(O(N)) and a 2D array ( O(N*target)).
-    private int countPartitionsTopDown(int index, int target, int[] arr, int[][] dp) {
-        int mod = 1000000007;
+    private int findTargetSumWaysTopDown(int index, int target, int[] arr, int[][] dp) {
         if (index == 0) {
             //We need to modify the edge cases in SubsetSumTargetCount.java as well
             //sum==0 base case fails if array starts from 0 because, count is not getting added
@@ -78,46 +82,48 @@ public class PartitionWithGivenDifference {
             return dp[index][target];
         }
 
-        int notPickCurrentElement = countPartitionsTopDown(index - 1, target, arr, dp);
+        int notPickCurrentElement = findTargetSumWaysTopDown(index - 1, target, arr, dp);
         int pickCurrentElement = 0;
         if (arr[index] <= target) {
-            pickCurrentElement = countPartitionsTopDown(index - 1, target - arr[index], arr, dp);
+            pickCurrentElement = findTargetSumWaysTopDown(index - 1, target - arr[index], arr, dp);
         }
-        return dp[index][target] = (notPickCurrentElement + pickCurrentElement) % mod;
+        return dp[index][target] = (notPickCurrentElement + pickCurrentElement);
     }
 
-    public int countPartitionsBottomUp(int n, int d, int[] arr) {
+    public int findTargetSumWaysBottomUp(int[] nums, int target) {
         // Code here
-        int mod = 1000000007;
         int totalSum = 0;
-        for (int number : arr) {
+        for (int number : nums) {
             totalSum += number;
         }
         /*
+        Here we want to assign plus and minus sign to each element in an array such that after assigning signs the given target should be achieved as a sum.
+        So, there will be basically two groups/subsets, one having all positive signs elements(s1) and another having all negative signs(s2).
+        So there sum will be s1 + -(s2) = s1 - s2(because all negative numbers add up to bigger negative number.
+        This sum is equal to target, so this question becomes s1 - s2 = target
         Here we want to find how many different pairs of subsets s1 and s2 can be formed such that
-        difference between s1 and s2 is given difference d.We also know that totalSum is sum of s1 and s2.
-        So, totalSum = s1 + s2; and s1 - s2 = d; where s1 > s2. So putting s1 from first equation into second gives us:
-        (totalSum - s2) - s2 = d, gives totalSum - 2*s2 = d, which gives us:
-        s2 = (totalSum - d) / 2
+        difference between s1 and s2 is given target d.We also know that totalSum is sum of s1 and s2.
+        So, totalSum = s1 + s2; and s1 - s2 = target; where s1 > s2. So putting s1 from first equation into second gives us:
+        (totalSum - s2) - s2 = d, gives totalSum - 2*s2 = target, which gives us:
+        s2 = (totalSum - target) / 2
         So our target is getting changed basically for which we need to check total subsets count, so our target will be s2.
         We know that totalSum = s1+s2 that means totalSum should always be greater than given difference
         and also all numbers in array are 0 <= arr[i] and integers, so s2 is also going to be integer, so (totalSum - d)
         is also going to be even number/integer
         */
         //Checking edge cases
-        if (totalSum - d < 0) return 0;
-        if ((totalSum - d) % 2 == 1) return 0;
-        int s2 = (totalSum - d) / 2;
-        return countPartitionsBottomUp(arr, s2) % mod;
+        if (totalSum - target < 0) return 0;
+        if ((totalSum - target) % 2 == 1) return 0;
+        int s2 = (totalSum - target) / 2;
+        int n = nums.length;
+        return findTargetSumWaysBottomUp(n, nums, s2);
     }
 
     //Time Complexity: O(N*target)
     //Reason: There are two nested loops
     //Space Complexity: O(N*target)
     //Reason: We are using an external array of size ‘N*target’. Stack Space is eliminated.
-    private int countPartitionsBottomUp(int[] arr, int subsetS2Target) {
-        int n = arr.length;
-        int mod = 1000000007;
+    private int findTargetSumWaysBottomUp(int n, int[] arr, int subsetS2Target) {
         int[][] dp = new int[n][subsetS2Target + 1];
         if (arr[0] == 0) {
             dp[0][0] = 2;// here 2 cases of pick and not pick arise so is taken as 2 into dp array for dp[0][0]
@@ -134,46 +140,46 @@ public class PartitionWithGivenDifference {
                 if (arr[index] <= target) {
                     pickCurrentElement = dp[index - 1][target - arr[index]];
                 }
-                dp[index][target] = (notPickCurrentElement + pickCurrentElement) % mod;
+                dp[index][target] = (notPickCurrentElement + pickCurrentElement);
             }
         }
         return dp[n - 1][subsetS2Target];
     }
 
-    public int countPartitionsSpaceOptimised(int n, int d, int[] arr) {
+    public int findTargetSumWaysSpaceOptimised(int[] nums, int target) {
         // Code here
-        int mod = 1000000007;
         int totalSum = 0;
-        for (int number : arr) {
+        for (int number : nums) {
             totalSum += number;
         }
         /*
+        Here we want to assign plus and minus sign to each element in an array such that after assigning signs the given target should be achieved as a sum.
+        So, there will be basically two groups/subsets, one having all positive signs elements(s1) and another having all negative signs(s2).
+        So there sum will be s1 + -(s2) = s1 - s2(because all negative numbers add up to bigger negative number.
+        This sum is equal to target, so this question becomes s1 - s2 = target
         Here we want to find how many different pairs of subsets s1 and s2 can be formed such that
-        difference between s1 and s2 is given difference d.We also know that totalSum is sum of s1 and s2.
-        So, totalSum = s1 + s2; and s1 - s2 = d; where s1 > s2. So putting s1 from first equation into second gives us:
-        (totalSum - s2) - s2 = d, gives totalSum - 2*s2 = d, which gives us:
-        s2 = (totalSum - d) / 2
+        difference between s1 and s2 is given target d.We also know that totalSum is sum of s1 and s2.
+        So, totalSum = s1 + s2; and s1 - s2 = target; where s1 > s2. So putting s1 from first equation into second gives us:
+        (totalSum - s2) - s2 = d, gives totalSum - 2*s2 = target, which gives us:
+        s2 = (totalSum - target) / 2
         So our target is getting changed basically for which we need to check total subsets count, so our target will be s2.
         We know that totalSum = s1+s2 that means totalSum should always be greater than given difference
         and also all numbers in array are 0 <= arr[i] and integers, so s2 is also going to be integer, so (totalSum - d)
         is also going to be even number/integer
         */
         //Checking edge cases
-        if (totalSum - d < 0) return 0;
-        if ((totalSum - d) % 2 == 1) return 0;
-
-        int s2 = (totalSum - d) / 2;
-
-        return countPartitionsSpaceOptimised(arr, s2) % mod;
+        if (totalSum - target < 0) return 0;
+        if ((totalSum - target) % 2 == 1) return 0;
+        int s2 = (totalSum - target) / 2;
+        int n = nums.length;
+        return findTargetSumWaysSpaceOptimised(n, nums, s2);
     }
 
     //Time Complexity: O(N*target)
     //Reason: There are three nested loops
     //Space Complexity: O(target)
     //Reason: We are using an external array of size ‘target+1’ to store only one row.
-    private int countPartitionsSpaceOptimised(int[] arr, int subsetS2Target) {
-        int n = arr.length;
-        int mod = 1000000007;
+    private int findTargetSumWaysSpaceOptimised(int n, int[] arr, int subsetS2Target) {
         int[] previousRow = new int[subsetS2Target + 1];
         int[] currentRow = new int[subsetS2Target + 1];
         if (arr[0] == 0) {
@@ -191,20 +197,19 @@ public class PartitionWithGivenDifference {
                 if (arr[index] <= target) {
                     pickCurrentElement = previousRow[target - arr[index]];
                 }
-                currentRow[target] = (notPickCurrentElement + pickCurrentElement) % mod;
+                currentRow[target] = (notPickCurrentElement + pickCurrentElement);
             }
             previousRow = currentRow.clone();
         }
-        return previousRow[subsetS2Target]%mod;
+        return previousRow[subsetS2Target];
     }
 
     public static void main(String[] args) {
-        int[] arr = {5, 2, 6, 4};
-        int n = arr.length;
-        int difference = 3;
-        PartitionWithGivenDifference pwgd = new PartitionWithGivenDifference();
-        System.out.println(pwgd.countPartitionsTopDown(n, difference, arr));
-        System.out.println(pwgd.countPartitionsBottomUp(n, difference, arr));
-        System.out.println(pwgd.countPartitionsSpaceOptimised(n, difference, arr));
+        int[] arr = {1, 1, 1, 1, 1};
+        int target = 3;
+        TargetSumPlusMinus tspm = new TargetSumPlusMinus();
+        System.out.println(tspm.findTargetSumWaysTopDown(arr, target));
+        System.out.println(tspm.findTargetSumWaysBottomUp(arr, target));
+        System.out.println(tspm.findTargetSumWaysSpaceOptimised(arr, target));
     }
 }
