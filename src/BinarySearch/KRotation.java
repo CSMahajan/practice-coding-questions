@@ -1,3 +1,5 @@
+package BinarySearch;
+
 public class KRotation {
 
     public static int findKRotation(int arr[], int n) {

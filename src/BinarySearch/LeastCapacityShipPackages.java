@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 Capacity To Ship Packages Within D Days
 

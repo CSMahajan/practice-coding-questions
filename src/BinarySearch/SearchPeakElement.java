@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 Peak element
 

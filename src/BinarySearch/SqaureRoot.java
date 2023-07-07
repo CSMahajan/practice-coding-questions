@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 Square root of a number
 

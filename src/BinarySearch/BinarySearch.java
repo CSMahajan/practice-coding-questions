@@ -1,3 +1,5 @@
+package BinarySearch;
+
 public class BinarySearch {
 
     /*Binary Search

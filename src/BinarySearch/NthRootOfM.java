@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 Find Nth root of M
 

@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 Search In Rotated Sorted Array
 

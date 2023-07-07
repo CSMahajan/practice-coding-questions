@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 Minimum element in a sorted and rotated array
 A sorted(in ascending order) array A[ ] with distinct elements is rotated at some unknown point,

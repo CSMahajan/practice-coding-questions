@@ -1,4 +1,4 @@
-/*
+package BinarySearch;/*
 Find the first and last position of a target element in sorted array
  */
 

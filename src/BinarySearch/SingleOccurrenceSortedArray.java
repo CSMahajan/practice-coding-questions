@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 Find the element that appears once in sorted array
 

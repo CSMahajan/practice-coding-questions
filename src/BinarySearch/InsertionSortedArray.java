@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
  * We have sorted array arr and number m.
  * Find the correct position for m where it can be inserted in the array so that it remains sorted.

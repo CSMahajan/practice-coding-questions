@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 Allocate minimum number of pages
 

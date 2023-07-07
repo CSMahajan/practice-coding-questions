@@ -1,3 +1,5 @@
+package BinarySearch;
+
 /*
 K-th missing element
 
