@@ -1,6 +1,5 @@
 package DynamicProgramming;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -52,7 +51,11 @@ public class MinimumCostToCutStick {
         return minCostTopDown(1, c, cutsList, dp);
     }
 
-    //Below solution not working
+    //Time Complexity: O(N*N*N)
+    //Reason: There are 2 variables i and j, therefore, N*N states and we explicitly run a loop inside the function
+    //which will run for N times, therefore at max ‘N*N*N’ new problems will be solved.
+    //Space Complexity: O(N*N) + O(N)
+    //Reason: We are using an auxiliary recursion stack space(O(N))and a 2D array ( O(N*N)).
     private int minCostTopDown(int i, int j, List<Integer> cutsList, int[][] dp) {
         if (i > j) {
             return 0;
@@ -64,13 +67,17 @@ public class MinimumCostToCutStick {
         for (int partition = i; partition <= j; partition++) {
             int cost = cutsList.get(j + 1) - cutsList.get(i - 1) +
                     minCostTopDown(i, partition - 1, cutsList, dp) +
-                    minCostTopDown(partition, j, cutsList, dp);
+                    minCostTopDown(partition + 1, j, cutsList, dp);
             minimumCost = Math.min(minimumCost, cost);
         }
         return dp[i][j] = minimumCost;
     }
 
-    //Below solution not working
+    //Time Complexity: O(N*N*N)
+    //Reason: There are 2 variables i and j, therefore, N*N states and we explicitly run a loop inside the function which will run for N times,
+    //therefore at max ‘N*N*N’ new problems will be solved.
+    //Space Complexity: O(N*N)
+    //Reason: We are using a 2D array ( O(N*N)).
     public int minCostBottomUp(int n, int[] cuts) {
         int c = cuts.length;
         int[][] dp = new int[c + 2][c + 2];
@@ -83,7 +90,7 @@ public class MinimumCostToCutStick {
                 if (i > j) continue;
                 int mini = Integer.MAX_VALUE;
                 for (int ind = i; ind <= j; ind++) {
-                    int ans = cuts[j + 1] - cuts[i - 1] + dp[i][ind - 1] + dp[ind + 1][j];
+                    int ans = cutsList.get(j + 1) - cutsList.get(i - 1) + dp[i][ind - 1] + dp[ind + 1][j];
                     mini = Math.min(mini, ans);
                 }
                 dp[i][j] = mini;
@@ -96,7 +103,7 @@ public class MinimumCostToCutStick {
         MinimumCostToCutStick mctcs = new MinimumCostToCutStick();
         int n = 7;
         int[] cuts = {1, 3, 4, 5};
-        //System.out.println(mctcs.minCostTopDown(n,cuts));
+        System.out.println(mctcs.minCostTopDown(n, cuts));
         System.out.println(mctcs.minCostBottomUp(n, cuts));
     }
 }
