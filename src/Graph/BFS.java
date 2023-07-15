@@ -32,6 +32,8 @@ thus bfs will be 0 1 2.
 public class BFS {
 
     // Function to return Breadth First Traversal of given graph.
+    //Time Complexity: O(N) + O(2E), Where N = Nodes, 2E is for total degrees as we traverse all adjacent nodes.
+    //Space Complexity: O(3N) ~ O(N), Space for queue data structure visited array and an adjacency list
     public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
         ArrayList<Integer> bfs = new ArrayList<>();
