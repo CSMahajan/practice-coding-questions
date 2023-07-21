@@ -24,7 +24,7 @@ Output: [4]
 Explanation:
 Only node 4 is a terminal node, and every path starting at node 4 leads to node 4.
 */
-public class EventualSafeStates {
+public class EventualSafeStatesDFS {
 
     //Time Complexity: O(V+E)+O(V) , where V = no. of nodes and E = no. of edges.
     //There can be at most V components. So, another O(V) time complexity.
@@ -93,7 +93,7 @@ public class EventualSafeStates {
         adj.get(8).add(9);
         adj.get(9).add(10);
         adj.get(10).add(8);
-        EventualSafeStates ess = new EventualSafeStates();
+        EventualSafeStatesDFS ess = new EventualSafeStatesDFS();
         System.out.println(ess.eventualSafeNodes(V, adj));
     }
 }

@@ -15,7 +15,7 @@ Input:
 Output: 0
 Explanation: no cycle in the graph
 */
-public class DetectCycleDirectedGraph {
+public class DetectCycleDirectedGraphDFS {
 
     //Time Complexity: O(V+E)+O(V) , where V = no. of nodes and E = no. of edges.
     //There can be at most V components. So, another O(V) time complexity.
@@ -74,7 +74,7 @@ public class DetectCycleDirectedGraph {
         adj.get(8).add(9);
         adj.get(9).add(10);
         adj.get(10).add(8);
-        DetectCycleDirectedGraph dcdg = new DetectCycleDirectedGraph();
+        DetectCycleDirectedGraphDFS dcdg = new DetectCycleDirectedGraphDFS();
         System.out.println(dcdg.isCyclic(V, adj));
     }
 }
