@@ -19,7 +19,7 @@ Input:graph = [[1,3],[0,2],[1,3],[0,2]]
 Output: true
 Explanation: We can partition the nodes into two sets: {0, 2} and {1, 3}.
 */
-public class BipartiteGraphBFS {
+public class BipartiteGraphDFS {
 
     //Time Complexity: O(V + 2E), Where V = Vertices, 2E is for total degrees as we traverse all adjacent nodes.
     //Space Complexity: O(3V) ~ O(V), Space for DFS stack space, colour array and an adjacency list.
@@ -32,7 +32,7 @@ public class BipartiteGraphBFS {
         //for connected components, need to add for loop as vertexes might not be connected
         for (int i = 0; i < V; i++) {
             if (color[i] == -1) {
-                if (!isGraphBipartiteUsingBFS(i, V, color, adj)) {
+                if (!isGraphBipartiteUsingDFS(i, 0, color, adj)) {
                     return false;
                 }
             }
@@ -40,25 +40,18 @@ public class BipartiteGraphBFS {
         return true;
     }
 
-    private boolean isGraphBipartiteUsingBFS(int startingNode, int V, int[] color, ArrayList<ArrayList<Integer>> adj) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(startingNode);
-        //we start with giving the startingNode's color as 0
-        color[startingNode] = 0;
-        while (!queue.isEmpty()) {
-            int node = queue.peek();
-            queue.remove();
-            //check for all neighbours and color them with different color than current node's color
-            for (int adjacentNode : adj.get(node)) {
-                if (color[adjacentNode] == -1) {
-                    //This adjacent node is not colored yet, so mark the color different from current node
-                    color[adjacentNode] = 1 - color[node];
-                    queue.add(adjacentNode);
-                } else if (color[adjacentNode] == color[node]) {
-                    //this node has been colored previously through some other node adjacency
-                    //which violates the condition for bipartite graph(that every adjacent node must be of different colors)
+    private boolean isGraphBipartiteUsingDFS(int startingNode, int startColor, int[] color, ArrayList<ArrayList<Integer>> adj) {
+        color[startingNode] = startColor;
+        for (int adjacentNode : adj.get(startingNode)) {
+            if (color[adjacentNode] == -1) {
+                //This adjacent node is not colored yet, so mark the color different from current node
+                if (!isGraphBipartiteUsingDFS(adjacentNode, 1 - color[startingNode], color, adj)) {
                     return false;
                 }
+            } else if (color[adjacentNode] == color[startingNode]) {
+                //this node has been colored previously through some other node adjacency
+                //which violates the condition for bipartite graph(that every adjacent node must be of different colors)
+                return false;
             }
         }
         return true;
@@ -70,12 +63,12 @@ public class BipartiteGraphBFS {
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         int n = graph.length;
         int m = graph[0].length;
-        for(int i = 0;i<n;i++) {
+        for (int i = 0; i < n; i++) {
             adj.add(new ArrayList<>());
         }
-        for(int i = 0;i<n;i++) {
+        for (int i = 0; i < n; i++) {
             ArrayList<Integer> list = adj.get(i);
-            for(int j = 0;j<graph[i].length;j++) {
+            for (int j = 0; j < graph[i].length; j++) {
                 list.add(graph[i][j]);
             }
             adj.add(list);
@@ -86,7 +79,7 @@ public class BipartiteGraphBFS {
         //for connected components, need to add for loop as vertexes might not be connected
         for (int i = 0; i < V; i++) {
             if (color[i] == -1) {
-                if (!isGraphBipartiteUsingBFS(i, V, color, adj)) {
+                if (!isGraphBipartiteUsingDFS(i, 0, color, adj)) {
                     return false;
                 }
             }
@@ -104,13 +97,13 @@ public class BipartiteGraphBFS {
         int n = edges.size();
         int m = edges.get(0).size();
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for(int i = 0;i<n;i++) {
+        for (int i = 0; i < n; i++) {
             adj.add(new ArrayList<>());
         }
         //converting edges into adjacency list
-        for(int i = 0;i<n;i++) {
-            for(int j = 0;j<m;j++) {
-                if(edges.get(i).get(j)==1) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (edges.get(i).get(j) == 1) {
                     adj.get(i).add(j);
                     adj.get(j).add(i);
                 }
@@ -119,7 +112,7 @@ public class BipartiteGraphBFS {
         //for connected components, need to add for loop as vertexes might not be connected
         for (int i = 0; i < V; i++) {
             if (color[i] == -1) {
-                if (!isGraphBipartiteUsingBFS(i, V, color, adj)) {
+                if (!isGraphBipartiteUsingDFS(i, 0, color, adj)) {
                     return false;
                 }
             }
@@ -142,7 +135,7 @@ public class BipartiteGraphBFS {
         adj.get(2).add(3);
         adj.get(3).add(2);
 
-        BipartiteGraphBFS bgBFS = new BipartiteGraphBFS();
+        BipartiteGraphDFS bgBFS = new BipartiteGraphDFS();
         if (bgBFS.isBipartite(4, adj)) {
             System.out.println("1");
         } else {
