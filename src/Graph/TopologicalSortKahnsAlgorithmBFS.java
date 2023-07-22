@@ -29,15 +29,15 @@ public class TopologicalSortKahnsAlgorithmBFS {
         // add your code here
         Queue<Integer> queue = new LinkedList<>();
         //in-degree array is incoming edge array for all the vertices
-        int[] indegree = new int[V];
+        int[] inDegree = new int[V];
         for (int i = 0; i < V; i++) {
             for (int adjacentNode : adj.get(i)) {
                 //increasing the count of every incoming edge to that vertex for every adjacent node of our current node
-                indegree[adjacentNode]++;
+                inDegree[adjacentNode]++;
             }
         }
         for (int i = 0; i < V; i++) {
-            if (indegree[i] == 0) {
+            if (inDegree[i] == 0) {
                 queue.add(i);
             }
         }
@@ -51,9 +51,9 @@ public class TopologicalSortKahnsAlgorithmBFS {
             queue.remove();
             //node is now in our topological order, so remove it from in-degree
             for (int adjacentNode : adj.get(node)) {
-                indegree[adjacentNode]--;
-                //after reducing the indegree for the current adjacentNode, check if indegree is 0 means that can now be part of topological sort order
-                if (indegree[adjacentNode] == 0) {
+                inDegree[adjacentNode]--;
+                //after reducing the inDegree for the current adjacentNode, check if inDegree is 0 means that can now be part of topological sort order
+                if (inDegree[adjacentNode] == 0) {
                     queue.add(adjacentNode);
                 }
             }

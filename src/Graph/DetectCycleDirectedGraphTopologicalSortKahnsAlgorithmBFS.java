@@ -23,15 +23,15 @@ public class DetectCycleDirectedGraphTopologicalSortKahnsAlgorithmBFS {
     //Space Complexity: O(N) + O(N) ~ O(2N), O(N) for the indegree array,
     //and O(N) for the queue data structure used in BFS(where N = no.of nodes).
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
-        int[] indegree = new int[V];
+        int[] inDegree = new int[V];
         for (int i = 0; i < V; i++) {
             for (int adjacentNode : adj.get(i)) {
-                indegree[adjacentNode]++;
+                inDegree[adjacentNode]++;
             }
         }
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < V; i++) {
-            if (indegree[i] == 0) {
+            if (inDegree[i] == 0) {
                 queue.add(i);
             }
         }
@@ -43,8 +43,8 @@ public class DetectCycleDirectedGraphTopologicalSortKahnsAlgorithmBFS {
             countTopologicalSort++;
             queue.remove();
             for (int adjacentNode : adj.get(node)) {
-                indegree[adjacentNode]--;
-                if (indegree[adjacentNode] == 0) {
+                inDegree[adjacentNode]--;
+                if (inDegree[adjacentNode] == 0) {
                     queue.add(adjacentNode);
                 }
             }
