@@ -36,8 +36,9 @@ Shortest path from 0 to 5 is 0->4->5 with edge weight 1+4=5.
 */
 public class ShortestPathDirectedAcyclicGraph {
 
-    //Time Complexity: O(N+M) {for the topological sort} + O(N+M)
-    //{for relaxation of vertices, each node and its adjacent nodes get traversed} ~ O(N+M).
+    //Time Complexity: O(N+M) + O(N+M)
+    //O(N+M) {for the topological sort} +
+    //O(N+M) {for relaxation of vertices, each node and its adjacent nodes get traversed} ~ O(N+M).
     //Where N= number of vertices and M= number of edges.
     //Space Complexity: O(N)+O(N)+O(N)+O(N+2M) ~ O(N+M)
     //O(N) {for the stack storing the topological sort}
