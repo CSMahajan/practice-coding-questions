@@ -20,7 +20,7 @@ This is better than the route of [1,2,2,2,5], where the maximum absolute differe
 public class PathWithMinimumEffort {
 
     //Time Complexity: O( 4*N*M * log( N*M) )
-    // { N*M are the total cells, for each of which we also check 4 adjacent nodes for the minimum effort and
+    //{ N*M are the total cells, for each of which we also check 4 adjacent nodes for the minimum effort and
     //additional log(N*M) for insertion-deletion operations in a priority queue }
     //Where, N = No. of rows of the binary maze and M = No. of columns of the binary maze.
     //Space Complexity: O( N*M )
