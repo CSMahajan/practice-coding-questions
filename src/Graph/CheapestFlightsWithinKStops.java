@@ -62,6 +62,7 @@ public class CheapestFlightsWithinKStops {
             int currentCityNode = tuple.city;
             int cost = tuple.price;
             queue.remove();
+            //if we cross the k stops, then we will look for another tuple in the queue
             if (stops > k) {
                 continue;
             }
