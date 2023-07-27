@@ -1,9 +1,6 @@
 package Graph;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /*
 Number of Ways to Arrive at Destination
@@ -62,8 +59,8 @@ public class NumberOfWaysToArriveAtDestination {
             adj.get(secondNode).add(new Pair(time, firstNode));
         }
         //timeRequired denotes the node wise time taken to reach that node
-        int[] timeRequired = new int[n];
-        Arrays.fill(timeRequired, (int) 1e9);
+        long[] timeRequired = new long[n];
+        Arrays.fill(timeRequired, (long) 1e12);
         //numberOfWays denotes the node wise number of ways possible to reach that node
         int[] numberOfWays = new int[n];
         //time required from 0 to 0 is always 0
@@ -72,17 +69,17 @@ public class NumberOfWaysToArriveAtDestination {
         numberOfWays[0] = 1;
         int mod = (int) (1e9 + 7);
         //Creating priority queue based on time
-        PriorityQueue<Pair> priorityQueue = new PriorityQueue<>((pair1, pair2) -> pair1.time - pair2.time);
+        PriorityQueue<Pair> priorityQueue = new PriorityQueue<>(Comparator.comparingLong(pair -> pair.time));
         //time required from 0 to 0 is always 0,so adding that as the initial pair in the priority queue
         priorityQueue.add(new Pair(0, 0));
         //Performing Dijkstra's algorithm
         while (!priorityQueue.isEmpty()) {
-            int timeToReachCurrentNode = priorityQueue.peek().time;
+            long timeToReachCurrentNode = priorityQueue.peek().time;
             int node = priorityQueue.peek().node;
             priorityQueue.remove();
             for (Pair pair : adj.get(node)) {
                 int adjacentNode = pair.node;
-                int timeToReachAdjacentNode = pair.time;
+                long timeToReachAdjacentNode = pair.time;
                 if (timeRequired[adjacentNode] > timeToReachCurrentNode + timeToReachAdjacentNode) {
                     //This is for the first time updating the timeRequired as we are coming first time with such short time
                     timeRequired[adjacentNode] = timeToReachCurrentNode + timeToReachAdjacentNode;
@@ -102,10 +99,10 @@ public class NumberOfWaysToArriveAtDestination {
     }
 
     static class Pair {
-        int time;
+        long time;
         int node;
 
-        public Pair(int time, int node) {
+        public Pair(long time, int node) {
             this.time = time;
             this.node = node;
         }
