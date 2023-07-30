@@ -30,33 +30,39 @@ public class SwimInRisingWater {
         int low = 0;
         int high = n * n - 1;
         int end = high;
+        //we will find the minimum possible time represented through mid to go from source(0,0) to destination(n-1,n-1)
         while (low < high) {
-            int middle = (low + high) / 2;
+            int mid = (low + high) / 2;
             DisjointSet ds = new DisjointSet(n * n);
-            for (int i = 0; i < n; i++) {
+            for (int row = 0; row < n; row++) {
                 boolean noUnion = true;
-                for (int j = 0; j < n; j++) {
-                    if (grid[i][j] > middle) continue;
-                    int node = i * n + j;
+                for (int column = 0; column < n; column++) {
+                    if (grid[row][column] > mid) {
+                        //current grid value is more than current time, it means we need to wait till mid(currentTime) reaches grid value
+                        continue;
+                    }
+                    int node = row * n + column;
                     // right
-                    if (j < n - 1 && grid[i][j + 1] <= middle) {
+                    if (column < n - 1 && grid[row][column + 1] <= mid) {
+                        //same row, next column
                         noUnion = false;
-                        int rightAdjacentNode = i * n + j + 1;
+                        int rightAdjacentNode = row * n + column + 1;
                         ds.unionByRank(node, rightAdjacentNode);
                     }
                     // down
-                    if (i < n - 1 && grid[i + 1][j] <= middle) {
+                    if (row < n - 1 && grid[row + 1][column] <= mid) {
+                        //next row, same column
                         noUnion = false;
-                        int downAdjacentNode = (i + 1) * n + j;
+                        int downAdjacentNode = (row + 1) * n + column;
                         ds.unionByRank(node, downAdjacentNode);
                     }
                 }
                 if (noUnion) break;
             }
             if (ds.isConnected(0, end)) {
-                high = middle;
+                high = mid;
             } else {
-                low = middle + 1;
+                low = mid + 1;
             }
         }
         return low;
@@ -65,45 +71,46 @@ public class SwimInRisingWater {
     static class DisjointSet {
 
         private int count;
-        private int[] parents;
+        private int[] parent;
         private int[] rank;
 
         public DisjointSet(int size) {
             this.count = size;
-            parents = new int[count];
+            parent = new int[count];
             for (int i = 0; i < size; i++) {
-                parents[i] = i;
+                parent[i] = i;
             }
             rank = new int[count];
         }
 
         public int findUltimateParent(int i) {
-            while (parents[i] != i) {
-                parents[i] = parents[parents[i]];
-                i = parents[i];
+            while (parent[i] != i) {
+                parent[i] = parent[parent[i]];
+                i = parent[i];
             }
-            return parents[i];
+            return parent[i];
         }
 
-        public boolean unionByRank(int p, int q) {
-            int parentOf_P = findUltimateParent(p);
-            int parentOf_Q = findUltimateParent(q);
-            if (parentOf_P == parentOf_Q) return false;
-            if (rank[parentOf_P] < rank[parentOf_Q]) {
-                parents[parentOf_P] = parentOf_Q;
+        public void unionByRank(int u, int v) {
+            int parentOf_U = findUltimateParent(u);
+            int parentOf_V = findUltimateParent(v);
+            if (parentOf_U == parentOf_V) {
+                return;
+            }
+            if (rank[parentOf_U] < rank[parentOf_V]) {
+                parent[parentOf_U] = parentOf_V;
             } else {
-                if (rank[parentOf_P] == rank[parentOf_Q]) {
-                    rank[parentOf_P]++;
+                if (rank[parentOf_U] == rank[parentOf_V]) {
+                    rank[parentOf_U]++;
                 }
-                parents[parentOf_Q] = parentOf_P;
+                parent[parentOf_V] = parentOf_U;
             }
-            return true;
         }
 
-        public boolean isConnected(int p, int q) {
-            int pp = findUltimateParent(p);
-            int pq = findUltimateParent(q);
-            return pp == pq;
+        public boolean isConnected(int u, int v) {
+            int parentOf_U = findUltimateParent(u);
+            int parentOf_V = findUltimateParent(v);
+            return parentOf_U == parentOf_V;
         }
 
         public int getCount() {
