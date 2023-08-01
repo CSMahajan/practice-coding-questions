@@ -48,6 +48,10 @@ public class MaximumPathSumBinaryTree {
         }
     }
 
+    //Time Complexity: O(N)
+    //Reason: We are doing a tree traversal.
+    //Space Complexity: O(N)
+    //Reason: In the worst case (skewed tree), space complexity can be O(N) for the recursion stack.
     public int maxPathSum(TreeNode root) {
         int[] maximumPathSum = new int[1];
         maximumPathSum[0] = Integer.MIN_VALUE;
