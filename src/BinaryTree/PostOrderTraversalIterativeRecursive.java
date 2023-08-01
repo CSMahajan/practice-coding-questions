@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-public class IterativeRecursivePostOrderTraversal {
+public class PostOrderTraversalIterativeRecursive {
 
     static class TreeNode {
         int data;

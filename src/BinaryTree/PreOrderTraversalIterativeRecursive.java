@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class IterativeRecursivePreOrderTraversal {
+public class PreOrderTraversalIterativeRecursive {
 
     static class TreeNode {
         int data;
