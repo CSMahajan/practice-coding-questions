@@ -32,6 +32,8 @@ public class BinaryTreeInPrePostOrderDFSTraversals {
         return dfsOrder;
     }
 
+    //TC:O(N)
+    //SC:O(N)
     private static void inOrderTraversal(TreeNode root, List<Integer> inOrder) {
         if (root == null) {
             return;
@@ -41,6 +43,8 @@ public class BinaryTreeInPrePostOrderDFSTraversals {
         inOrderTraversal(root.right, inOrder);
     }
 
+    //TC:O(N)
+    //SC:O(N)
     private static void preOrderTraversal(TreeNode root, List<Integer> preOrder) {
         if (root == null) {
             return;
@@ -50,6 +54,8 @@ public class BinaryTreeInPrePostOrderDFSTraversals {
         preOrderTraversal(root.right, preOrder);
     }
 
+    //TC:O(N)
+    //SC:O(N)
     private static void postOrderTraversal(TreeNode root, List<Integer> postOrder) {
         if (root == null) {
             return;
