@@ -1,7 +1,7 @@
 package BinaryTree;
 
 /*
-Maximum Depth of Binary Tree
+Maximum Depth(Height) of Binary Tree
 
 Given the root of a binary tree, return its maximum depth.
 A binary tree's maximum depth is the number of nodes along the longest path
