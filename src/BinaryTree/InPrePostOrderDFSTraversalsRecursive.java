@@ -3,7 +3,7 @@ package BinaryTree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinaryTreeInPrePostOrderDFSTraversals {
+public class InPrePostOrderDFSTraversalsRecursive {
 
     static class TreeNode {
         int data;
