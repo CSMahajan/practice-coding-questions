@@ -135,7 +135,7 @@ public class BoundaryOrderTraversal {
         root.left.right = new TreeNode(5);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
-        BoundaryOrderTraversal bt = new BoundaryOrderTraversal();
-        System.out.println(bt.boundary(root));
+        BoundaryOrderTraversal bot = new BoundaryOrderTraversal();
+        System.out.println(bot.boundary(root));
     }
 }
