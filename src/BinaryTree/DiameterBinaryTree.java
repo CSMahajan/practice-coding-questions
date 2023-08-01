@@ -38,17 +38,19 @@ public class DiameterBinaryTree {
     //Time Complexity: O(N)
     //Space Complexity: O(1) Extra Space + O(H) Recursion Stack space (Where 'H'  is the height of binary tree)
     public int diameterOfBinaryTree(TreeNode root) {
+
         int[] diameter = new int[1];
+        //We are using array as pass by reference alternative
         maxHeight(root, diameter);
         return diameter[0];
     }
 
-    private int maxHeight(TreeNode root, int[] diameter) {
-        if (root == null) {
+    private int maxHeight(TreeNode node, int[] diameter) {
+        if (node == null) {
             return 0;
         }
-        int leftHeight = maxHeight(root.left, diameter);
-        int rightHeight = maxHeight(root.right, diameter);
+        int leftHeight = maxHeight(node.left, diameter);
+        int rightHeight = maxHeight(node.right, diameter);
         diameter[0] = Math.max(diameter[0], leftHeight + rightHeight);
         return 1 + Math.max(leftHeight, rightHeight);
     }

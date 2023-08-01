@@ -61,15 +61,15 @@ public class BalancedBinaryTree {
         return dfsHeight(root) != -1;
     }
 
-    public int dfsHeight(TreeNode root) {
-        if(root==null){
+    public int dfsHeight(TreeNode node) {
+        if(node==null){
             return 0;
         }
-        int leftSubTreeHeight = dfsHeight(root.left);
+        int leftSubTreeHeight = dfsHeight(node.left);
         if(leftSubTreeHeight==-1){
             return -1;
         }
-        int rightSubTreeHeight = dfsHeight(root.right);
+        int rightSubTreeHeight = dfsHeight(node.right);
         if(rightSubTreeHeight==-1){
             return -1;
         }

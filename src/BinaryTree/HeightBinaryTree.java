@@ -13,7 +13,7 @@ Example 2:
 Input: root = [1,null,2]
 Output: 2
 */
-public class MaximumDepthBinaryTree {
+public class HeightBinaryTree {
 
     static class TreeNode {
         int data;
@@ -44,7 +44,7 @@ public class MaximumDepthBinaryTree {
         root.right = new TreeNode(3);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
-        MaximumDepthBinaryTree mdbt = new MaximumDepthBinaryTree();
+        HeightBinaryTree mdbt = new HeightBinaryTree();
         System.out.println(mdbt.maxDepth(root));
     }
 }
