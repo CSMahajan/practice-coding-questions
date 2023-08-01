@@ -6,38 +6,38 @@ import java.util.Queue;
 
 public class BinaryTreeLevelOrderBFSTraversals {
 
-    static class Node {
+    static class TreeNode {
         int data;
-        Node left;
-        Node right;
+        TreeNode left;
+        TreeNode right;
 
-        public Node(int data) {
+        public TreeNode(int data) {
             this.data = data;
             this.left = null;
             this.right = null;
         }
     }
 
-    public static List<List<Integer>> getTreeTraversal(Node root) {
+    public static List<List<Integer>> getTreeTraversal(TreeNode root) {
         List<List<Integer>> levelOrder = new LinkedList<>();
         if (root == null) {
             return levelOrder;
         }
-        Queue<Node> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> currentLevel = new LinkedList<>();
             for (int i = 0; i < size; i++) {
-                Node node = queue.poll();
-                if (node != null) {
-                    if (node.left != null) {
-                        queue.add(node.left);
+                TreeNode treeNode = queue.poll();
+                if (treeNode != null) {
+                    if (treeNode.left != null) {
+                        queue.add(treeNode.left);
                     }
-                    if (node.right != null) {
-                        queue.add(node.right);
+                    if (treeNode.right != null) {
+                        queue.add(treeNode.right);
                     }
-                    currentLevel.add(node.data);
+                    currentLevel.add(treeNode.data);
                 }
             }
             levelOrder.add(currentLevel);
@@ -46,13 +46,13 @@ public class BinaryTreeLevelOrderBFSTraversals {
     }
 
     public static void main(String[] args) {
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
-        root.left.left = new Node(4);
-        root.left.right = new Node(5);
-        root.right.left = new Node(6);
-        root.right.right = new Node(7);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
         System.out.println(getTreeTraversal(root));
     }
 }
