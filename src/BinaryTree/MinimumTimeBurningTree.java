@@ -67,12 +67,10 @@ public class MinimumTimeBurningTree {
     public static int minBurningTime(TreeNode root, int target) {
         // Your code goes here
         //Step 1: Marking the parents
-        List<Integer> allNodesAtDistanceK = new ArrayList<>();
         //parentMap stores the parent of the current node where current node as the key and parent node as the value
         Map<TreeNode, TreeNode> parentMap = new HashMap<>();
         TreeNode targetNode = markParentsForAllNodes(root, parentMap, target);
-        //Step 2: Traversing till K distance(level) from target node
-        //as K levels signify K distance in binary tree(towards parent,left child,right child)
+        //Step 2: Traversing till reaches end of binary tree(towards parent,left child,right child)
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(targetNode);
         //visited map stores if the node is visited or not
