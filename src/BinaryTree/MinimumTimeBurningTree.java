@@ -3,46 +3,49 @@ package BinaryTree;
 import java.util.*;
 
 /*
-All Nodes Distance K in Binary Tree
+Burning Tree
 
-Given the root of a binary tree, the value of a target node target, and an integer k,
-return an array of the values of all nodes that have a distance k from the target node.
-You can return the answer in any order.
-Example 1:
-Input: root = [3,5,1,6,2,0,8,null,null,7,4], target = 5, k = 2
-Output: [7,4,1]
-Explanation: The nodes that are a distance 2 from the target node (with value 5) have values 7, 4, and 1.
-Example 2:
-Input: root = [1], target = 1, k = 3
-Output: []
+Given a binary tree and a node data called target.
+Find the minimum time required to burn the complete binary tree if the target is set on fire.
+It is known that in 1 second all nodes connected to a given node get burned.
+That is its left child, right child, and parent.
+Note: The tree contains unique values.
 Example 1:
 Input:
-          20
-        /    \
-      8       22
-    /   \
-   4    12
-       /   \
-      10    14
+          1
+        /   \
+      2      3
+    /  \      \
+   4    5      6
+       / \      \
+      7   8      9
+                   \
+                   10
 Target Node = 8
-K = 2
-Output: 10 14 22
-Explanation: The three nodes at distance 2
-from node 8 are 10, 14, 22.
+Output: 7
+Explanation: If leaf with the value
+8 is set on fire.
+After 1 sec: 5 is set on fire.
+After 2 sec: 2, 7 are set to fire.
+After 3 sec: 4, 1 are set to fire.
+After 4 sec: 3 is set to fire.
+After 5 sec: 6 is set to fire.
+After 6 sec: 9 is set to fire.
+After 7 sec: 10 is set to fire.
+It takes 7s to burn the complete tree.
 Example 2:
 Input:
-         20
-       /    \
-      7      24
-    /   \
-   4     3
-        /
-       1
-Target Node = 7
-K = 2
-Output: 1 24
+          1
+        /   \
+      2      3
+    /  \      \
+   4    5      7
+  /    /
+ 8    10
+Target Node = 10
+Output: 5
 */
-public class AllNodesAtKDistanceInBinaryTree {
+public class MinimumTimeBurningTree {
 
     static class TreeNode {
         int data;
@@ -61,60 +64,65 @@ public class AllNodesAtKDistanceInBinaryTree {
     //Second O(N) for traversing till K distance in queue bfs traversal, on worst K can be N so, O(N)
     //SC:O(N)+O(N)+O(N)
     //First O(N) for parent, Second O(N) for visited, Third O(N) for queue
-    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+    public static int minBurningTime(TreeNode root, int target) {
+        // Your code goes here
         //Step 1: Marking the parents
         List<Integer> allNodesAtDistanceK = new ArrayList<>();
         //parentMap stores the parent of the current node where current node as the key and parent node as the value
         Map<TreeNode, TreeNode> parentMap = new HashMap<>();
-        markParentsForAllNodes(root, parentMap);
+        TreeNode targetNode = markParentsForAllNodes(root, parentMap, target);
         //Step 2: Traversing till K distance(level) from target node
         //as K levels signify K distance in binary tree(towards parent,left child,right child)
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(target);
+        queue.add(targetNode);
         //visited map stores if the node is visited or not
-        Map<TreeNode, Boolean> visitedNodesMap = new HashMap<>();
-        visitedNodesMap.put(target, true);
-        int currentLevel = 0;
+        Map<TreeNode, Boolean> visitedBurntNodesMap = new HashMap<>();
+        visitedBurntNodesMap.put(targetNode, true);
+        int currentTime = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();
-            if (currentLevel == k) {
-                break;
-            }
-            currentLevel++;
+            boolean isAnyNodeBurnt = false;
             for (int i = 0; i < size; i++) {
                 //for every node in our current level, we need to traverse towards left child, right child, parent node
                 TreeNode current = queue.poll();
                 if (current != null) {
                     //Traverse towards left child node
-                    if (current.left != null && !visitedNodesMap.containsKey(current.left)) {
+                    if (current.left != null && !visitedBurntNodesMap.containsKey(current.left)) {
+                        isAnyNodeBurnt = true;
                         queue.add(current.left);
-                        visitedNodesMap.put(current.left, true);
+                        visitedBurntNodesMap.put(current.left, true);
                     }
                     //Traverse towards right child node
-                    if (current.right != null && !visitedNodesMap.containsKey(current.right)) {
+                    if (current.right != null && !visitedBurntNodesMap.containsKey(current.right)) {
+                        isAnyNodeBurnt = true;
                         queue.add(current.right);
-                        visitedNodesMap.put(current.right, true);
+                        visitedBurntNodesMap.put(current.right, true);
                     }
                     //Traverse towards parent node
                     TreeNode parentNode = parentMap.get(current);
-                    if (parentNode != null && !visitedNodesMap.containsKey(parentNode)) {
+                    if (parentNode != null && !visitedBurntNodesMap.containsKey(parentNode)) {
+                        isAnyNodeBurnt = true;
                         queue.add(parentNode);
-                        visitedNodesMap.put(parentNode, true);
+                        visitedBurntNodesMap.put(parentNode, true);
                     }
                 }
             }
+            if(isAnyNodeBurnt) {
+                currentTime++;
+            }
         }
-        while (!queue.isEmpty()) {
-            allNodesAtDistanceK.add(queue.poll().data);
-        }
-        return allNodesAtDistanceK;
+        return currentTime;
     }
 
-    private void markParentsForAllNodes(TreeNode root, Map<TreeNode, TreeNode> parentMap) {
+    private static TreeNode markParentsForAllNodes(TreeNode root, Map<TreeNode, TreeNode> parentMap, int target) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
+        TreeNode targetNode = null;
         while (!queue.isEmpty()) {
             TreeNode current = queue.poll();
+            if(current.data==target){
+                targetNode = current;
+            }
             if (current.left != null) {
                 parentMap.put(current.left, current);
                 queue.add(current.left);
@@ -124,6 +132,7 @@ public class AllNodesAtKDistanceInBinaryTree {
                 queue.add(current.right);
             }
         }
+        return targetNode;
     }
 
     public static void main(String[] args) {
@@ -134,17 +143,7 @@ public class AllNodesAtKDistanceInBinaryTree {
         root.left.right = new TreeNode(5);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
-        root.left.left.left = new TreeNode(8);
-        root.left.left.right = new TreeNode(9);
-        root.left.right.left = new TreeNode(10);
-        root.left.right.right = new TreeNode(11);
-        root.right.left.left = new TreeNode(12);
-        root.right.left.right = new TreeNode(13);
-        root.right.right.left = new TreeNode(14);
-        root.right.right.right = new TreeNode(15);
-        TreeNode target = root.left.right;
-        int k = 5;
-        AllNodesAtKDistanceInBinaryTree ankbt = new AllNodesAtKDistanceInBinaryTree();
-        System.out.println(ankbt.distanceK(root, target, k));
+        int target = 5;
+        System.out.println(minBurningTime(root,target));
     }
 }
