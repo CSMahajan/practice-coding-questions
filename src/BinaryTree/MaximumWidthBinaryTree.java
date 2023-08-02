@@ -74,6 +74,8 @@ public class MaximumWidthBinaryTree {
         int maxWidth = 0;
         Queue<Pair> queue = new LinkedList<>();
         queue.add(new Pair(root, 0));
+        //Perform level order bfs traversal on each level
+        //while doing so, reduce the indexes to avoid integer overflow of indexes
         while (!queue.isEmpty()) {
             int size = queue.size();
             int minimumIndex = queue.peek().index;
@@ -81,24 +83,32 @@ public class MaximumWidthBinaryTree {
             int last = 0;
             //in order to avoid integer overflow, we will reduce the indexes for each nodes using minimum index
             //in that we only require indexes of first and last index on each level
+            //iterate on the current level
             for (int i = 0; i < size; i++) {
                 Pair pair = queue.peek();
+                //reducing value of currentIndex to avoid integer overflow of indexes while putting into queue
                 int currentIndex = pair.index - minimumIndex;
                 TreeNode node = pair.node;
                 queue.poll();
+                //while iterating on the current level, at the start is first index element
                 if (i == 0) {
                     first = currentIndex;
                 }
+                //while iterating on the current level, at the end is last index element
                 if (i == size - 1) {
                     last = currentIndex;
                 }
+                //0-based indexing
                 if (node.left != null) {
+                    //left child of 0-based indexing for root i is 2*i+1
                     queue.add(new Pair(node.left, currentIndex * 2 + 1));
                 }
                 if (node.right != null) {
+                    //right child of 0-based indexing for root i is 2*i+2
                     queue.add(new Pair(node.right, currentIndex * 2 + 2));
                 }
             }
+            //taking the maximum possible width on any level
             maxWidth = Math.max(maxWidth, last - first + 1);
         }
         return maxWidth;
