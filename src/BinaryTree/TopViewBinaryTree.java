@@ -62,9 +62,9 @@ public class TopViewBinaryTree {
     //Space Complexity: O(N)
     public static ArrayList<Integer> topView(TreeNode root) {
         // add your code
-        ArrayList<Integer> topViewOrder = new ArrayList<>();
+        ArrayList<Integer> topView = new ArrayList<>();
         if (root == null) {
-            return topViewOrder;
+            return topView;
         }
         //Queue is storing pair consisting of node and vertical line as row number
         Queue<Pair> queue = new LinkedList<>();
@@ -90,9 +90,9 @@ public class TopViewBinaryTree {
         //as entries in treeMap are in ascending order i.e.left to right vertical line number,
         //their corresponding values depict the top view of the binary tree
         for (Map.Entry<Integer, Integer> entry : treeMap.entrySet()) {
-            topViewOrder.add(entry.getValue());
+            topView.add(entry.getValue());
         }
-        return topViewOrder;
+        return topView;
     }
 
     public static void main(String[] args) {

@@ -78,9 +78,9 @@ public class BottomViewBinaryTree {
     //Space Complexity: O(N)
     public ArrayList<Integer> bottomView(TreeNode root) {
         // Code here
-        ArrayList<Integer> bottomViewOrder = new ArrayList<>();
+        ArrayList<Integer> bottomView = new ArrayList<>();
         if (root == null) {
-            return bottomViewOrder;
+            return bottomView;
         }
         //Queue is storing pair consisting of node and vertical line as row number
         Queue<Pair> queue = new LinkedList<>();
@@ -102,9 +102,9 @@ public class BottomViewBinaryTree {
             }
         }
         for (Map.Entry<Integer, Integer> entry : treeMap.entrySet()) {
-            bottomViewOrder.add(entry.getValue());
+            bottomView.add(entry.getValue());
         }
-        return bottomViewOrder;
+        return bottomView;
     }
 
     public static void main(String[] args) {
