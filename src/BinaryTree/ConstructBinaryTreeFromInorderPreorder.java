@@ -86,18 +86,9 @@ public class ConstructBinaryTreeFromInorderPreorder {
     }
 
     public static void main(String[] args) {
-        /*TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-        root.left.left = new TreeNode(4);
-        root.left.right = new TreeNode(5);
-        root.right.left = new TreeNode(6);
-        root.right.right = new TreeNode(7);*/
         int[] preorder = {10, 20, 40, 50, 30, 60};
         int[] inorder = {40, 20, 50, 10, 60, 30};
         ConstructBinaryTreeFromInorderPreorder cbtip = new ConstructBinaryTreeFromInorderPreorder();
         TreeNode root = cbtip.buildTree(preorder, inorder);
-
-
     }
 }
