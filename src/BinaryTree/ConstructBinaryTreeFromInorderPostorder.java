@@ -4,30 +4,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
-Construct Binary Tree from Inorder and Preorder Traversal
+Construct Binary Tree from Inorder and Postorder Traversal
 
-Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and
-inorder is the inorder traversal of the same tree, construct and return the binary tree.
+Given two integer arrays inorder and postorder where inorder is the inorder traversal of a binary tree and
+postorder is the postorder traversal of the same tree, construct and return the binary tree.
 Example 1:
 Input:
-N = 4
-inorder[] = {1 6 8 7}
-preorder[] = {1 6 7 8}
-Output: 8 7 6 1
+N = 8
+in[] = 4 8 2 5 1 6 3 7
+post[] =8 4 5 2 6 7 3 1
+Output: 1 2 4 8 5 3 6 7
+Explanation: For the given postorder and inorder traversal of tree the  resultant binary tree will be
+           1
+       /      \
+     2         3
+   /  \      /  \
+  4    5    6    7
+   \
+     8
+
 Example 2:
 Input:
-N = 6
-inorder[] = {3 1 4 0 5 2}
-preorder[] = {0 1 3 4 2 5}
-Output: 3 4 1 5 2 0
-Explanation: The tree will look like
-       0
-    /     \
-   1       2
- /   \    /
-3    4   5
+N = 5
+in[] = 9 5 2 3 4
+post[] = 5 9 3 4 2
+Output: 2 9 5 4 3
+Explanation:
+the  resultant binary tree will be
+           2
+        /     \
+       9       4
+        \     /
+         5   3
 */
-public class ConstructBinaryTreeFromInorderPreorder {
+public class ConstructBinaryTreeFromInorderPostorder {
 
     static class TreeNode {
         int data;
@@ -41,12 +51,12 @@ public class ConstructBinaryTreeFromInorderPreorder {
         }
     }
 
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
         Map<Integer, Integer> inOrderIndexMap = new HashMap<>();
         for (int i = 0; i < inorder.length; i++) {
             inOrderIndexMap.put(inorder[i], i);
         }
-        return buildTree(preorder, 0, preorder.length - 1,
+        return buildTree(postorder, 0, postorder.length - 1,
                 inorder, 0, inorder.length - 1, inOrderIndexMap);
     }
 
@@ -54,13 +64,13 @@ public class ConstructBinaryTreeFromInorderPreorder {
     //Assumption: Hashmap returns the answer in constant time
     //Space Complexity: O(N)
     //Reason: We are using an external hashmap of size 'N'
-    private TreeNode buildTree(int[] preorder, int preOrderStart, int preOrderEnd, int[] inorder, int inOrderStart, int inOrderEnd, Map<Integer, Integer> inOrderIndexMap) {
-        if (preOrderStart > preOrderEnd || inOrderStart > inOrderEnd) {
+    private TreeNode buildTree(int[] postorder, int postOrderStart, int postOrderEnd, int[] inorder, int inOrderStart, int inOrderEnd, Map<Integer, Integer> inOrderIndexMap) {
+        if (postOrderStart > postOrderEnd || inOrderStart > inOrderEnd) {
             return null;
         }
-        //first node in the preorder is always root node
-        //so, we will prepare root node on that preorder index data
-        TreeNode root = new TreeNode(preorder[preOrderStart]);
+        //last node in the postorder is always root node
+        //so, we will prepare root node on that postorder index data
+        TreeNode root = new TreeNode(postorder[postOrderEnd]);
         //corresponding root node's index inOrder can be found using the inOrderIndexMap
         //in case of duplicate node data(value) present,
         // write a function which iterates for loop from inOrderStart to inOrderEnd on inorder array and
@@ -72,25 +82,24 @@ public class ConstructBinaryTreeFromInorderPreorder {
         //so total number of nodes of left subtree can be found
         int noOfNodesOnLeftSubTree = inOrderRootIndex - inOrderStart;
         /*recursively following above process and create the new nodes with left and right child for their corresponding parent
-        1.in preOrder traversal array, left subtree nodes are present
-        from index next of current root nodes index(which is at preOrderStart)
-        to(till) the number of nodes on left subtree
-        right subtree nodes are present from next index of ending of left subtree in preorder(earlier mentioned)
-        to(till) the end of number of nodes in preorder array traversal.
+        1.in postOrder traversal array, left subtree nodes are present
+        from postOrderStart to(till) the postOrderStart+ number of nodes on left subtree
+        right subtree nodes are present from next index of ending of left subtree in postorder(earlier mentioned)
+        to(till) the end of number of nodes in postorder array traversal.
         2.in inOrder traversal array, left subtree nodes are present
         from inOrderStart to previous index of inOrderRootIndex
         right subtree nodes are present from next index of inOrderRootIndex to inOrderEnd index*/
-        root.left = buildTree(preorder, preOrderStart + 1, preOrderStart + noOfNodesOnLeftSubTree,
+        root.left = buildTree(postorder, postOrderStart, postOrderStart + noOfNodesOnLeftSubTree - 1,
                 inorder, inOrderStart, inOrderRootIndex - 1, inOrderIndexMap);
-        root.right = buildTree(preorder, preOrderStart + noOfNodesOnLeftSubTree + 1, preOrderEnd,
+        root.right = buildTree(postorder, postOrderStart + noOfNodesOnLeftSubTree, postOrderEnd - 1,
                 inorder, inOrderRootIndex + 1, inOrderEnd, inOrderIndexMap);
         return root;
     }
 
     public static void main(String[] args) {
-        int[] preorder = {10, 20, 40, 50, 30, 60};
+        int[] postorder = {10, 20, 40, 50, 30, 60};
         int[] inorder = {40, 20, 50, 10, 60, 30};
-        ConstructBinaryTreeFromInorderPreorder cbtip = new ConstructBinaryTreeFromInorderPreorder();
-        TreeNode root = cbtip.buildTree(preorder, inorder);
+        ConstructBinaryTreeFromInorderPostorder cbtip = new ConstructBinaryTreeFromInorderPostorder();
+        TreeNode root = cbtip.buildTree(inorder, postorder);
     }
 }
