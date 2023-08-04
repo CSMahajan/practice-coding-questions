@@ -64,10 +64,9 @@ public class SearchInBinarySearchTree {
         root.left.right = new TreeNode(3);
         root.right.left = new TreeNode(5);
         root.right.right = new TreeNode(7);
-        int[] inorder = {1, 2, 3, 4, 5, 6, 7};
         SearchInBinarySearchTree sibst = new SearchInBinarySearchTree();
         int val = 5;
-        TreeNode targetNode = sibst.searchBST(root,val);
+        TreeNode targetNode = sibst.searchBST(root, val);
         System.out.println(targetNode.data);
     }
 }
