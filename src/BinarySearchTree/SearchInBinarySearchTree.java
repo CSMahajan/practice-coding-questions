@@ -1,7 +1,5 @@
 package BinarySearchTree;
 
-import BinaryTree.FlattenBinaryTreeToLinkedList;
-
 /*
 Search in a Binary Search Tree
 
