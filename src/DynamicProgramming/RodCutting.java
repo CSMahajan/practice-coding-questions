@@ -27,7 +27,7 @@ The maximum obtainable value is 24 by cutting the rod into 8 pieces of length 3,
 public class RodCutting {
 
     public int cutRodTopDown(int[] price, int n) {
-        //code here
+        
         int[][] dp = new int[n][n + 1];
         for (int[] row : dp) {
             Arrays.fill(row, -1);
@@ -63,7 +63,7 @@ public class RodCutting {
     //Space Complexity: O(N*N)
     //Reason: We are using an external array of size ‘N*(N+1)’. Stack Space is eliminated.
     public int cutRodBottomUp(int[] price, int n) {
-        //code here
+        
         int[][] dp = new int[n][n + 1];
         for (int rodLength = 0; rodLength <= n; rodLength++) {
             dp[0][rodLength] = rodLength * price[0];
@@ -87,7 +87,7 @@ public class RodCutting {
     //Space Complexity: O(N) + O(N)
     //Reason: We are using an external array of size ‘N+1’ to store previous and current row.
     public int cutRodSpaceOptimisedTwoArrays(int[] price, int n) {
-        //code here
+        
         int[] previousRow = new int[n + 1];
         int[] currentRow = new int[n + 1];
         for (int rodLength = 0; rodLength <= n; rodLength++) {
@@ -113,7 +113,7 @@ public class RodCutting {
     //Space Complexity: O(N)
     //Reason: We are using an external array of size ‘N+1’ to store only one row.
     public int cutRodSpaceOptimisedOneArray(int[] price, int n) {
-        //code here
+        
         int[] previousRow = new int[n + 1];
         for (int rodLength = 0; rodLength <= n; rodLength++) {
             previousRow[rodLength] = rodLength * price[0];

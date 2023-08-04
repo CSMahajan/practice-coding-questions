@@ -28,7 +28,7 @@ public class StronglyConnectedComponentsKosarajusAlgorithm {
     //Space Complexity: O(V)+O(V)+O(V+E), where V = no. of vertices, E = no. of edges.
     //Two O(V) for the visited array and the stack we have used. O(V+E) space for the reversed adjacent list.
     public int kosaraju(int V, ArrayList<ArrayList<Integer>> adj) {
-        //code here
+        
         //Kosaraju's algorithm works only on directed graphs
         //Step 1: Perform DFS on the directed graph according to their finishing time
         int[] visited = new int[V];

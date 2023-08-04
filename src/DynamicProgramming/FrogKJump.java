@@ -29,7 +29,7 @@ import java.util.Arrays;
 public class FrogKJump {
 
     public int minimizeCostTopDown(int[] arr, int N, int K) {
-        //code here
+        
         int[] dp = new int[N];
         Arrays.fill(dp, -1);
         return minimizeCostTopDown(arr, dp, N - 1, K);
@@ -55,7 +55,7 @@ public class FrogKJump {
     }
 
     public int minimizeCostBottomUp(int[] arr, int N, int K) {
-        //code here
+        
         int[] dp = new int[N];
         Arrays.fill(dp, -1);
         return minimizeCostBottomUp(arr, dp, N, K);
