@@ -77,8 +77,8 @@ public class FloorInBinarySearchTree {
         root.left.right = new TreeNode(3);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(9);
-        FloorInBinarySearchTree cibst = new FloorInBinarySearchTree();
+        FloorInBinarySearchTree fibst = new FloorInBinarySearchTree();
         int key = 5;
-        System.out.println(cibst.findFloor(root, key));
+        System.out.println(fibst.findFloor(root, key));
     }
 }
