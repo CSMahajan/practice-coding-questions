@@ -48,7 +48,7 @@ public class BinarySearchTreeIterator {
         }
     }
 
-    private final Stack<TreeNode> stack = new Stack<TreeNode>();
+    private final Stack<TreeNode> stack = new Stack<>();
 
     public BinarySearchTreeIterator(TreeNode root) {
         pushAll(root);
