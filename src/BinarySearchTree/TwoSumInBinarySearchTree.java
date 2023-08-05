@@ -81,6 +81,8 @@ public class TwoSumInBinarySearchTree {
 
     }
 
+    //TC:O(N)
+    //SC:O(Height of BST)
     public boolean findTarget(TreeNode root, int k) {
         BSTIterator l = new BSTIterator(root, false);
         BSTIterator r = new BSTIterator(root, true);
