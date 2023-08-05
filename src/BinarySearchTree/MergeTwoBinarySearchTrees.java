@@ -56,7 +56,6 @@ public class MergeTwoBinarySearchTrees {
             this.left = null;
             this.right = null;
         }
-
     }
 
     //Time Complexity: O(m + n)
