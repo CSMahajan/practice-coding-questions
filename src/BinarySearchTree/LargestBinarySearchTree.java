@@ -47,13 +47,13 @@ public class LargestBinarySearchTree {
     }
 
     static class NodeValue {
-        public int maxNode;
         public int minNode;
+        public int maxNode;
         public int maxSize;
 
-        public NodeValue(int maxNode, int minNode, int maxSize) {
-            this.maxNode = maxNode;
+        public NodeValue(int minNode, int maxNode, int maxSize) {
             this.minNode = minNode;
+            this.maxNode = maxNode;
             this.maxSize = maxSize;
         }
     }
