@@ -137,7 +137,7 @@ public class MergeTwoBinarySearchTrees {
                 inorder.add(root1.data);
 
                 root1 = root1.right; // Move it to right
-            } else if (root2 != null) { // If root2 has exhausted and only root2 remains
+            } else { // If root2 has exhausted and only root2 remains
                 inorder.add(root2.data);
 
                 root2 = root2.right; // Move it to right
