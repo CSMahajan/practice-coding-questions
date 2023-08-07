@@ -6,20 +6,20 @@ Implement Trie (Prefix Tree)
 A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and
 retrieve keys in a dataset of strings.
 There are various applications of this data structure, such as autocomplete and spellchecker.
-Implement the Trie class:
-Trie() Initializes the trie object.
+Implement the Trie1 class:
+Trie1() Initializes the trie object.
 void insert(String word) Inserts the string word into the trie.
 boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
 boolean startsWith(String prefix) Returns true
 if there is a previously inserted string word that has the prefix prefix, and false otherwise.
 Example 1:
 Input
-["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+["Trie1", "insert", "search", "search", "startsWith", "insert", "search"]
 [[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
 Output
 [null, null, true, false, true, null, true]
 Explanation
-Trie trie = new Trie();
+Trie1 trie = new Trie1();
 trie.insert("apple");
 trie.search("apple");   // return True
 trie.search("app");     // return False
@@ -27,7 +27,7 @@ trie.startsWith("app"); // return True
 trie.insert("app");
 trie.search("app");     // return True
 */
-public class Trie {
+public class Trie1 {
     static class Node {
 
         protected static final int ALPHABET_SIZE = 26;
@@ -61,7 +61,7 @@ public class Trie {
 
     private final Node root;
 
-    public Trie() {
+    public Trie1() {
         root = new Node();
     }
 
@@ -112,24 +112,24 @@ public class Trie {
 
     public static void main(String[] args) {
         int n = 5;
-        //for the sake of understanding trie data structure, we are creating type array, where its type values can be 1,2,3
+        //for the sake of understanding trie1 data structure, we are creating type array, where its type values can be 1,2,3
         //type value 1 denotes insert a given word
         //type value 2 denotes search a given word if its exists or not
         //type value 3 denotes search if a given prefix exists or not
         int[] type = {1, 1, 2, 3, 2};
         String[] value = {"hello", "help", "help", "hel", "hel"};
-        Trie trie = new Trie();
+        Trie1 trie1 = new Trie1();
         for (int i = 0; i < n; i++) {
             if (type[i] == 1) {
-                trie.insert(value[i]);
+                trie1.insert(value[i]);
             } else if (type[i] == 2) {
-                if (trie.search(value[i])) {
+                if (trie1.search(value[i])) {
                     System.out.println("true");
                 } else {
                     System.out.println("false");
                 }
             } else {
-                if (trie.startsWith(value[i])) {
+                if (trie1.startsWith(value[i])) {
                     System.out.println("true");
                 } else {
                     System.out.println("false");
