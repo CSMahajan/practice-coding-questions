@@ -18,26 +18,28 @@ Output : 7
 Explanation :
 The maximum result is 1 ^ 6 = 7.
 */
-class Node {
-    Node[] links = new Node[2];
-    //2 positions in node links array indicate 0 and 1 which are required in binary representation of 32-bit representing a number
+public class Trie6 {
 
-    public boolean containsKey(int bit) {
-        return (links[bit] != null);
+    static class Node {
+        Node[] links = new Node[2];
+        //2 positions in node links array indicate 0 and 1 which are required in binary representation of 32-bit representing a number
+
+        public boolean containsKey(int bit) {
+            return (links[bit] != null);
+        }
+
+        public Node get(int bit) {
+            return links[bit];
+        }
+
+        public void put(int bit, Node node) {
+            links[bit] = node;
+        }
     }
 
-    public Node get(int bit) {
-        return links[bit];
-    }
-
-    public void put(int bit, Node node) {
-        links[bit] = node;
-    }
-}
-class Trie{
     private static Node root;
 
-    Trie() {
+    Trie6() {
         root = new Node();
     }
 
@@ -73,14 +75,11 @@ class Trie{
         }
         return maximumNumber;
     }
-}
-
-public class MaximumXORofTwoNumbersInArray {
 
     //TC:O(N*32) + O(N*32), first 32*N for inserting into trie, second 32*N for getting the maximum xor number from trie
     public int findMaximumXOR(int[] arr, int n) {
         //code here
-        Trie trie = new Trie();
+        Trie6 trie = new Trie6();
         //first insert all the number in the trie
         for (int i = 0; i < n; i++) {
             trie.insert(arr[i]);
@@ -96,7 +95,7 @@ public class MaximumXORofTwoNumbersInArray {
     public static void main(String[] args) {
         int[] arr = {25, 10, 2, 8, 5, 3};
         int n = arr.length;
-        MaximumXORofTwoNumbersInArray mxortna = new MaximumXORofTwoNumbersInArray();
-        System.out.println(mxortna.findMaximumXOR(arr, n));
+        Trie6 trie = new Trie6();
+        System.out.println(trie.findMaximumXOR(arr, n));
     }
 }
