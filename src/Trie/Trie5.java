@@ -20,7 +20,7 @@ Explanation: On XORing the integers ‘a’ and ‘b’, we get ‘3’.
 On checking the ‘c’th bit in ‘d’, since it is present, we returned 1.
 On making the ‘e’th bit in ‘f’ set, the integer becomes 7.
 */
-public class BitwiseBasicOperations {
+public class Trie5 {
 
     public static int getXOR(int a, int b) {
         // Write Your Code Here
