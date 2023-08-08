@@ -24,6 +24,18 @@ Output: [15,-1,5]
 */
 public class Trie7 {
 
+    static class Tuple {
+        int xorNumber;
+        int maxXorLimitNumber;
+        int queryIndex;
+
+        public Tuple(int xorNumber, int maxXorLimitNumber, int queryIndex) {
+            this.xorNumber = xorNumber;
+            this.maxXorLimitNumber = maxXorLimitNumber;
+            this.queryIndex = queryIndex;
+        }
+    }
+
     static class Node {
         Node[] links = new Node[2];
 
@@ -64,7 +76,7 @@ public class Trie7 {
             int bit = (number >> i) & 1;
             if (node.containsKey(1 - bit)) {
                 node = node.get(1 - bit);
-                maximumXOR = 1 << i | maximumXOR;
+                maximumXOR = (1 << i) | maximumXOR;
             } else {
                 node = node.get(bit);
             }
@@ -87,39 +99,39 @@ public class Trie7 {
             int maxXorLimitNumber = queries[i][1];
             offlineQueries.add(new Tuple(xorNumber, maxXorLimitNumber, i));
         }
+        //sorting the given queries in ascending order of max limit allowed for their numbers
         offlineQueries.sort(Comparator.comparingInt(o -> o.maxXorLimitNumber));
         int index = 0;
         int[] xorQueryResult = new int[m];
         Arrays.fill(xorQueryResult, -1);
         Trie7 trie = new Trie7();
+        //we are storing into trie if the number in an array is less than or equal to maximum xor limit for queries
+        //these queries are sorted in ascending order of their maximum xor limit number
+        //this changes the time complexity from O(Q*n) to O(Q+n)
+        //as we are only increasingly adding number in trie, so it is easier to get maximum XOR till its limit
         for (int i = 0; i < m; i++) {
             int maxXorLimitNumber = offlineQueries.get(i).maxXorLimitNumber;
-            int xorNumber = offlineQueries.get(i).maxXorLimitNumber;
+            int xorNumber = offlineQueries.get(i).xorNumber;
             int queryIndex = offlineQueries.get(i).queryIndex;
             while (index < n && nums[index] <= maxXorLimitNumber) {
+                //inserting into trie smaller or equal numbers to the limit
                 trie.insert(nums[index]);
                 index++;
             }
             if (index != 0) {
+                //index increased means there are few nodes(elements of array) into the trie,
+                //getting maximum xor among all possible range for our query number
                 xorQueryResult[queryIndex] = trie.getMaximumXOR(xorNumber);
             } else {
+                //if any index is not increased it means all the numbers in the array were larger than maximum limit allowed for the query
+                //so saving the answer as -1 for that query
                 xorQueryResult[queryIndex] = -1;
             }
         }
         return xorQueryResult;
     }
 
-    static class Tuple {
-        int xorNumber;
-        int maxXorLimitNumber;
-        int queryIndex;
 
-        public Tuple(int xorNumber, int maxXorLimitNumber, int queryIndex) {
-            this.xorNumber = xorNumber;
-            this.maxXorLimitNumber = maxXorLimitNumber;
-            this.queryIndex = queryIndex;
-        }
-    }
 
     public static void main(String[] args) {
         int[] nums = {0, 1, 2, 3, 4};
