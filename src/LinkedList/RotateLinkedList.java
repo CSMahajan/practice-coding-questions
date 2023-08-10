@@ -25,6 +25,11 @@ public class RotateLinkedList {
 
     }
 
+    //Time Complexity: O(length of list) + O(length of list – (length of list%k))
+    //Reason: O(length of the list) for calculating the length of the list.
+    //O(length of the list – (length of list%k)) for breaking link.
+    //Space Complexity: O(1)
+    //Reason: No extra data structure is used for computation.
     public ListNode rotateRight(ListNode head, int k) {
         if (head == null || head.next == null || k == 0) {
             return head;
