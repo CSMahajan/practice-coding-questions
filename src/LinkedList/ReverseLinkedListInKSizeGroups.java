@@ -109,12 +109,12 @@ public class ReverseLinkedListInKSizeGroups {
         head.next.next.next.next.next = new ListNode(6);
         head.next.next.next.next.next.next = new ListNode(7);
         head.next.next.next.next.next.next.next = new ListNode(8);
-        System.out.println("Before reversing a linked list in k size groups");
-        rllksg.displayLinkedList(head);
         int k = 3;
+        System.out.println("Before reversing a linked list in groups of size " + k);
+        rllksg.displayLinkedList(head);
         ListNode reverseHead = rllksg.reverseKGroup(head, k);
         System.out.println();
-        System.out.println("After reversing a linked list in k size groups");
+        System.out.println("After reversing a linked list in groups of size " + k);
         rllksg.displayLinkedList(reverseHead);
     }
 }
