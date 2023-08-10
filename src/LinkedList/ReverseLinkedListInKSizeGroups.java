@@ -32,8 +32,6 @@ public class ReverseLinkedListInKSizeGroups {
             this.data = data;
         }
 
-        public ListNode() {
-        }
     }
 
     //Time Complexity: O(N)
