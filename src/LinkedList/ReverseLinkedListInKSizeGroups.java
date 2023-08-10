@@ -78,11 +78,9 @@ public class ReverseLinkedListInKSizeGroups {
             count++;
 
         }
-
         if (nextNode != null) {
             node.next = reverseInKSizeGroup(nextNode, k);
         }
-
         return previous;
     }
 
