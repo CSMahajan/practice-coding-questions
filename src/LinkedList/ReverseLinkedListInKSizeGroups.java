@@ -69,14 +69,12 @@ public class ReverseLinkedListInKSizeGroups {
         ListNode previous = null, nextNode = null;
         ListNode current = node;
         int count = 0;
-
         while (current != null && count < k) {
             nextNode = current.next;
             current.next = previous;
             previous = current;
             current = nextNode;
             count++;
-
         }
         if (nextNode != null) {
             node.next = reverseInKSizeGroup(nextNode, k);
