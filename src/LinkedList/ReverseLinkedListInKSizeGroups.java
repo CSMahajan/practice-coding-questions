@@ -63,6 +63,28 @@ public class ReverseLinkedListInKSizeGroups {
         return dummy.next;
     }
 
+    //In below recursive approach,we are also reversing last group which of size less than k
+    public static ListNode reverseInKSizeGroup(ListNode node, int k) {
+        //Your code here
+        ListNode previous = null, nextNode = null;
+        ListNode current = node;
+        int count = 0;
+
+        while (current != null && count < k) {
+            nextNode = current.next;
+            current.next = previous;
+            previous = current;
+            current = nextNode;
+            count++;
+
+        }
+
+        if (nextNode != null)
+            node.next = reverseInKSizeGroup(nextNode, k);
+
+        return previous;
+    }
+
     private int getLengthOfLinkedList(ListNode head) {
         int length = 0;
         while (head != null) {
