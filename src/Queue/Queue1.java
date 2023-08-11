@@ -7,14 +7,10 @@ Implement Queue using Array
 public class Queue1 {
 
     private final int[] arr;
-    private int start, end, currentSize, maxSize;
-
-    public Queue1() {
-        arr = new int[16];
-        start = -1;
-        end = -1;
-        currentSize = 0;
-    }
+    private int start;
+    private int end;
+    private int currentSize;
+    private final int maxSize;
 
     public Queue1(int maxSize) {
         this.maxSize = maxSize;
@@ -74,7 +70,7 @@ public class Queue1 {
         return currentSize == maxSize;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Queue1 q = new Queue1(6);
         q.push(4);
         q.push(14);
