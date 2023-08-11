@@ -49,7 +49,6 @@ public class Queue3 {
             System.out.println("Queue is Empty");
         else {
             System.out.println(Front.val + " Removed From Queue");
-            QueueNode Temp = Front;
             Front = Front.next;
             size--;
         }
