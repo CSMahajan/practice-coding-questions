@@ -10,6 +10,8 @@ public class Queue2 {
     Stack< Integer > input = new Stack < > ();
     Stack < Integer > output = new Stack < > ();
 
+    //Time Complexity: O(1)
+    //Space Complexity: O(2N)
     /** Push element x to the back of queue. */
     public void push(int x) {
         while (!input.empty()) {
