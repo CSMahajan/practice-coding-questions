@@ -50,7 +50,7 @@ public class Queue2 {
         return input.size();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Queue2 q = new Queue2();
         q.push(3);
         q.push(4);
