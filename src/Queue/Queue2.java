@@ -48,7 +48,7 @@ public class Queue2 {
         return input.peek();
     }
 
-    int size() {
+    public int size() {
         return input.size();
     }
 

@@ -11,22 +11,22 @@ public class Stack2 {
 
     //Time Complexity: O(N)
     //Space Complexity: O(N)
-    void push(int x) {
+    public void push(int x) {
         q.add(x);
         for (int i = 0; i < q.size() - 1; i++) {
             q.add(q.remove());
         }
     }
 
-    int pop() {
+    public int pop() {
         return q.remove();
     }
 
-    int top() {
+    public int top() {
         return q.peek();
     }
 
-    int size() {
+    public int size() {
         return q.size();
     }
 
