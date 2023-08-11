@@ -9,6 +9,8 @@ public class Stack1 {
     int[] arr;
     int top = -1;
 
+    //Time Complexity: O(N)
+    //Space Complexity: O(N)
     public Stack1(int capacity) {
         // Write your code here.
         size = capacity;

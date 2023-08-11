@@ -20,6 +20,13 @@ public class Queue1 {
         currentSize = 0;
     }
 
+    //Time Complexity:
+    //pop function: O(1)
+    //push function: O(1)
+    //top function: O(1)
+    //size function: O(1)
+    //Space Complexity:
+    //Whole Queue: O(n)
     public void push(int newElement) {
         if (currentSize == maxSize) {
             System.out.println("Queue is full\nExiting...");
