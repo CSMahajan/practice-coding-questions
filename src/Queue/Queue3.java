@@ -31,14 +31,14 @@ public class Queue3 {
     }
 
     public void enqueue(int value) {
-        QueueNode Temp;
-        Temp = new QueueNode(value);
+        QueueNode temp;
+        temp = new QueueNode(value);
         if (front == null) {
-            front = Temp;
+            front = temp;
         } else {
-            rear.next = Temp;
+            rear.next = temp;
         }
-        rear = Temp;
+        rear = temp;
         System.out.println(value + " Inserted into Queue ");
         size++;
     }
