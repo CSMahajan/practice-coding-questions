@@ -35,11 +35,10 @@ public class Queue3 {
         Temp = new QueueNode(value);
         if (front == null) {
             front = Temp;
-            rear = Temp;
         } else {
             rear.next = Temp;
-            rear = Temp;
         }
+        rear = Temp;
         System.out.println(value + " Inserted into Queue ");
         size++;
     }
