@@ -94,7 +94,7 @@ public class CloneCopyLinkedListWithNextAndRandomPointer {
         ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(3);
         ListNode node4 = new ListNode(4);
-        ListNode head = null;
+        ListNode head;
         head = node1;
         head.next = node2;
         head.next.next = node3;
