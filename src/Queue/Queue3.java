@@ -15,54 +15,54 @@ public class Queue3 {
         }
     }
 
-    QueueNode Front = null, Rear = null;
+    QueueNode front = null, rear = null;
     int size = 0;
 
-    public boolean Empty() {
-        return Front == null;
+    public boolean isEmpty() {
+        return front == null;
     }
 
-    public int Peek() {
-        if (Empty()) {
+    public int peek() {
+        if (isEmpty()) {
             System.out.println("Queue is Empty");
             return -1;
         } else
-            return Front.val;
+            return front.val;
     }
 
-    public void Enqueue(int value) {
+    public void enqueue(int value) {
         QueueNode Temp;
         Temp = new QueueNode(value);
-        if (Front == null) {
-            Front = Temp;
-            Rear = Temp;
+        if (front == null) {
+            front = Temp;
+            rear = Temp;
         } else {
-            Rear.next = Temp;
-            Rear = Temp;
+            rear.next = Temp;
+            rear = Temp;
         }
         System.out.println(value + " Inserted into Queue ");
         size++;
     }
 
-    public void Dequeue() {
-        if (Front == null)
+    public void dequeue() {
+        if (front == null)
             System.out.println("Queue is Empty");
         else {
-            System.out.println(Front.val + " Removed From Queue");
-            Front = Front.next;
+            System.out.println(front.val + " Removed From Queue");
+            front = front.next;
             size--;
         }
     }
 
     public static void main(String[] args) {
         Queue3 Q = new Queue3();
-        Q.Enqueue(10);
-        Q.Enqueue(20);
-        Q.Enqueue(30);
-        Q.Enqueue(40);
-        Q.Enqueue(50);
-        Q.Dequeue();
+        Q.enqueue(10);
+        Q.enqueue(20);
+        Q.enqueue(30);
+        Q.enqueue(40);
+        Q.enqueue(50);
+        Q.dequeue();
         System.out.println("The size of the Queue is " + Q.size);
-        System.out.println("The Peek element of the Queue is " + Q.Peek());
+        System.out.println("The Peek element of the Queue is " + Q.peek());
     }
 }

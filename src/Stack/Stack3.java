@@ -5,17 +5,17 @@ Implement stack using linked list
 */
 public class Stack3 {
 
-    private static class stackNode {
+    private static class StackNode {
         int data;
-        stackNode next;
+        StackNode next;
 
-        stackNode(int d) {
+        StackNode(int d) {
             data = d;
             next = null;
         }
     }
 
-    stackNode top;
+    StackNode top;
     int size;
 
     Stack3() {
@@ -24,7 +24,7 @@ public class Stack3 {
     }
 
     public void stackPush(int x) {
-        stackNode element = new stackNode(x);
+        StackNode element = new StackNode(x);
         element.next = top;
         top = element;
         System.out.println("Element pushed");
@@ -42,12 +42,12 @@ public class Stack3 {
         return size;
     }
 
-    public boolean stackIsEmpty() {
+    public boolean isStackEmpty() {
         return top == null;
     }
 
     public void printStack() {
-        stackNode current = top;
+        StackNode current = top;
         while (current != null) {
             System.out.print(current.data + " ");
             current = current.next;
@@ -62,6 +62,6 @@ public class Stack3 {
         s.printStack();
         System.out.println("Element popped " + s.stackPop());
         System.out.println("Stack size: " + s.stackSize());
-        System.out.println("Stack is empty or not: " + s.stackIsEmpty());
+        System.out.println("Stack is empty or not: " + s.isStackEmpty());
     }
 }
