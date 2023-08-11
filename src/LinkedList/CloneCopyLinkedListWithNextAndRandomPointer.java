@@ -57,6 +57,9 @@ public class CloneCopyLinkedListWithNextAndRandomPointer {
         ListNode dummy = new ListNode(0);
         //here iter will move on to original list
         //temp will move on to deep copy linked list
+        //fast will always be next node of original linked list
+        //(in order to establish a link between current to next nodes in original linked list) and
+        //(current to next nodes in copy linked list)
         iter = head;
         temp = dummy;
         ListNode fast;
