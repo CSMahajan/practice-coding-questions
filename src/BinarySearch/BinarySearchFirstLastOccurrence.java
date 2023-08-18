@@ -2,7 +2,6 @@ package BinarySearch;/*
 Find the first and last position of a target element in sorted array
  */
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BinarySearchFirstLastOccurrence {
@@ -55,23 +54,15 @@ public class BinarySearchFirstLastOccurrence {
     }
 
     public static void main(String[] args) {
-        long[] arr = {1, 2, 2, 3, 3, 3, 4, 5, 5};
-        int x = 3;
-
-        int a[] = {3, 5, 4};
-        int b[] = {3, 6, 5, 11};
-        int c[] = {-10, -5, -5, -5, 2};
-        int d[] = {1, 2, 4, 4, 5};
-        int e[] = {1, 2, 3, 4};
-        ArrayList<Integer> f = new ArrayList<>();
-        f.add(1);
-        f.add(2);
-        f.add(4);
-        f.add(4);
-        f.add(5);
-        //System.out.println(searchRange(c, -5));
-        //System.out.println(searchRange(d, 4));
-        //System.out.println(searchRange(e, -1));
+        int[] a = {1, 2, 2, 3, 3, 3, 4, 5, 5};
+        int[] b = {3, 6, 5, 11};
+        int[] c = {-10, -5, -5, -5, 2};
+        int[] d = {1, 2, 4, 4, 5};
+        int[] e = {1, 2, 3, 4};
+        System.out.println(Arrays.toString(searchFirstLastOccurrence(a, 4)));
+        System.out.println(Arrays.toString(searchFirstLastOccurrence(b, 4)));
+        System.out.println(Arrays.toString(searchFirstLastOccurrence(c, 4)));
         System.out.println(Arrays.toString(searchFirstLastOccurrence(d, 4)));
+        System.out.println(Arrays.toString(searchFirstLastOccurrence(e, 4)));
     }
 }
