@@ -9,20 +9,11 @@ The first integer of each row is greater than the last integer of the previous r
 Given an integer target, return true if target is in matrix or false otherwise.
 You must write a solution in O(log(m * n)) time complexity.
 Example 1:
-Input:
-n = 3, m = 3, x = 62
-matrix[][] = {{ 3, 30, 38},
-              {36, 43, 60},
-              {40, 51, 69}}
-Output: 0
-Explanation:
-62 is not present in the matrix, so output is 0.
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
+Output: true
 Example 2:
-Input:
-n = 1, m = 6, x = 55
-matrix[][] = {{18, 21, 27, 38, 55, 67}}
-Output: 1
-Explanation: 55 is present in the matrix.
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
+Output: false
 */
 public class SearchInSorted2DMatrix {
 
