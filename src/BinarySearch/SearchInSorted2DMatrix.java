@@ -1,7 +1,7 @@
 package BinarySearch;
 
 /*
-Search in a row-column 2-D sorted Matrix
+Search in a 2-D sorted Matrix
 
 You are given an m x n integer matrix with the following two properties:
 Each row is sorted in non-decreasing order.
@@ -53,9 +53,11 @@ public class SearchInSorted2DMatrix {
 
     public static void main(String[] args) {
         SearchInSorted2DMatrix ss2m = new SearchInSorted2DMatrix();
-        int[][] matrix = {{3, 30, 38},
+        int[][] matrix = {
+                {3, 30, 38},
                 {36, 43, 60},
-                {40, 51, 69}};
+                {40, 51, 69}
+        };
         int target = 62;
         System.out.println(ss2m.searchMatrix(matrix, target));
     }
