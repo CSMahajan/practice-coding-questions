@@ -30,7 +30,7 @@ peak element as it is greater than
 it's neighbor elements 3 and 2.
 If 1 is returned then the generated output will be 1 else 0.
  */
-public class SearchPeakElement {
+public class FindPeakElement1 {
 
     public static int peakElement(int[] arr,int n)
     {
@@ -62,7 +62,7 @@ public class SearchPeakElement {
     }
 
     public static void main(String[] args) {
-        int arr[] = {2,2};
+        int[] arr = {2,2};
         System.out.println(peakElement(arr, arr.length));
     }
 }
