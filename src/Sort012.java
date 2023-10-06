@@ -47,6 +47,9 @@ public class Sort012 {
         }
     }
 
+    //Time Complexity: O(N), where N = size of the given array.
+    //Reason: We are using a single loop that can run at most N times.
+    //Space Complexity: O(1) as we are not using any extra space.
     public void sort012UsingDutchNationalFlagAlgorithm(int[] arr, int n) {
         int low = 0;
         int mid = 0;
