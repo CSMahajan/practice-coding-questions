@@ -16,7 +16,7 @@ of elements (1, 2, 3, -2, 5) which
 is a contiguous subarray.
 */
 
-public class KadaneAlgorithm {
+public class KadaneAlgorithmMaximumSubarraySum {
 
     public static long maxSubarraySum(int[] arr, int n) {
         // Your code here
