@@ -18,7 +18,7 @@ is a contiguous subarray.
 
 public class KadaneAlgorithm {
 
-    public static long maxSubarraySum(int arr[], int n) {
+    public static long maxSubarraySum(int[] arr, int n) {
         // Your code here
         if (n == 0) return 0;
         long sum = 0, maxSubarraySum = Long.MIN_VALUE;
@@ -31,7 +31,7 @@ public class KadaneAlgorithm {
     }
 
     public static void main(String[] args) {
-        int arr[] = {-1, -2, -3, -4};
+        int[] arr = {-1, -2, -3, -4};
         System.out.println(maxSubarraySum(arr, 4));
     }
 }
