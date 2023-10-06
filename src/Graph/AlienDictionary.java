@@ -51,10 +51,12 @@ public class AlienDictionary {
 
         The topological order of characters is not possible under below 2 conditions:
         1.If all the characters of any two words match but word with more characters is placed before word with fewer characters.
-        e.g. s1="abcd", s2="abc". Here all the three letters ('a','b','c') match but abcd(length = 4) is placed before abc(length = 2) in the alien's dictionary
-        which generally does not happen
+        e.g. s1="abcd", s2="abc".
+        Here all the three letters ('a','b','c') match but abcd(length = 4) is placed before abc(length = 2)
+        in the alien's dictionary which generally does not happen
         2.If we find the cyclic dependency or having cycle in the directed graph that we created from given words.
-        e.g.s1="abc",s2="bca",s3="acb". Here while comparing s1 and s2, we can find 'a' appears before 'b', but while comparing s2 and s3, we get that 'b' appears before 'a'.
+        e.g.s1="abc",s2="bca",s3="acb". Here while comparing s1 and s2, we can find 'a' appears before 'b',
+        but while comparing s2 and s3, we get that 'b' appears before 'a'.
         This causes cyclic dependency in the directed graph
         */
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
