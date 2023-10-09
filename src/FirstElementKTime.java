@@ -24,17 +24,17 @@ public class FirstElementKTime {
 
     public static int firstElementKTime(int[] a, int n, int k) {
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < a.length; i++) {
-            map.put(a[i], map.getOrDefault(a[i], 0) + 1);
-            if (map.get(a[i]) == k) {
-                return a[i];
+        for (int num : a) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+            if (map.get(num) == k) {
+                return num;
             }
         }
         return -1;
     }
 
     public static void main(String[] args) {
-        int a[] = {1, 7, 4, 3, 4, 8, 7};
+        int[] a = {1, 7, 4, 3, 4, 8, 7};
         System.out.println(firstElementKTime(a, a.length, 2));
     }
 }
