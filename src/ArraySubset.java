@@ -26,22 +26,14 @@ public class ArraySubset {
     Output: No
     Explanation: 1 is present twice in set 2 but only once in set 1*/
 
-    public static String isSubset(long a1[], long a2[], long n, long m) {
+    public static String isSubset(long[] a1, long[] a2, long n, long m) {
         Map<Long, Integer> map1 = new HashMap<>();
         Map<Long, Integer> map2 = new HashMap<>();
-        for (int i = 0; i < a1.length; i++) {
-            if (map1.containsKey(a1[i])) {
-                map1.put(a1[i], map1.get(a1[i]) + 1);
-            } else {
-                map1.put(a1[i], 1);
-            }
+        for (long i : a1) {
+            map1.put(i, map1.getOrDefault(i, 0) + 1);
         }
-        for (int i = 0; i < a2.length; i++) {
-            if (map2.containsKey(a2[i])) {
-                map2.put(a2[i], map2.get(a2[i]) + 1);
-            } else {
-                map2.put(a2[i], 1);
-            }
+        for (long i : a2) {
+            map2.put(i, map2.getOrDefault(i, 0) + 1);
         }
         for (Map.Entry<Long, Integer> entry : map2.entrySet()) {
             if (!map1.containsKey(entry.getKey()) || (map1.get(entry.getKey()) < entry.getValue())) {
@@ -51,10 +43,9 @@ public class ArraySubset {
         return "Yes";
     }
 
-
     /* -------------------- Other solutions --------------------*/
 
-    public String isSubset1(long a1[], long a2[], long n, long m) {
+    public String isSubset1(long[] a1, long[] a2, long n, long m) {
         Map<Long, Integer> map = new HashMap<>();
         for (long i : a2) {
             map.put(i, map.getOrDefault(i, 0) + 1);
@@ -70,7 +61,7 @@ public class ArraySubset {
         return "Yes";
     }
     /* -------------------- Other solutions --------------------*/
-    public String isSubset2(long a1[], long a2[], long n, long m) {
+    public String isSubset2(long[] a1, long[] a2, long n, long m) {
         Arrays.sort(a1);
         Arrays.sort(a2);
         int i = 0;
@@ -84,6 +75,4 @@ public class ArraySubset {
         }
         return "No";
     }
-
-
 }
