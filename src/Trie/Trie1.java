@@ -69,12 +69,13 @@ public class Trie1 {
     public void insert(String word) {
         Node node = root;
         for (int i = 0; i < word.length(); i++) {
-            if (!node.containsKey(word.charAt(i))) {
+            char ch = word.charAt(i);
+            if (!node.containsKey(ch)) {
                 //creating a new reference trie node for the letter if it does not exist at current index
-                node.put(word.charAt(i), new Node());
+                node.put(ch, new Node());
             }
             //navigating to newly created trie node reference
-            node = node.get(word.charAt(i));
+            node = node.get(ch);
         }
         //marking end of word as true (by setting flag as true) to denote word ends here
         node.setEnd();
@@ -84,12 +85,13 @@ public class Trie1 {
     public boolean search(String word) {
         Node node = root;
         for (int i = 0; i < word.length(); i++) {
-            if (!node.containsKey(word.charAt(i))) {
+            char ch = word.charAt(i);
+            if (!node.containsKey(ch)) {
                 //current letter does not exist, so this word would also not exist
                 return false;
             }
             //moving on to current letters pointing reference trie node
-            node = node.get(word.charAt(i));
+            node = node.get(ch);
         }
         //at end of word, flag should be compulsorily true which denotes word already stored in trie ends here
         //if it was false, the word found matching till now is part of another word(current word is prefix to another word)
@@ -99,12 +101,13 @@ public class Trie1 {
     public boolean startsWith(String prefix) {
         Node node = root;
         for (int i = 0; i < prefix.length(); i++) {
-            if (!node.containsKey(prefix.charAt(i))) {
+            char ch = prefix.charAt(i);
+            if (!node.containsKey(ch)) {
                 //current letter does not exist, so this word would also not exist
                 return false;
             }
             //moving on to current letters pointing reference trie node
-            node = node.get(prefix.charAt(i));
+            node = node.get(ch);
         }
         //as we are looking for prefix only using startsWith method, exact trie node structure matched, so returning true
         return true;
