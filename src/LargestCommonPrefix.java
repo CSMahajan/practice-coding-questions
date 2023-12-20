@@ -14,7 +14,7 @@ public class LargestCommonPrefix {
     Explanation: "gee" is the longest common
     prefix in all the given strings.*/
 
-    public static String longestCommonPrefix(String arr[], int n) {
+    public static String longestCommonPrefix(String[] arr, int n) {
         // code here
         // take temp_prefix string and assign first element of arr : a.
         String result = arr[0];
@@ -34,5 +34,11 @@ public class LargestCommonPrefix {
             }
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        String[] arr = {"geeksforgeeks", "geeks", "geek", "geezer"};
+        int n = arr.length;
+        System.out.println(longestCommonPrefix(arr, n));
     }
 }
