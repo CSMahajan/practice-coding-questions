@@ -46,7 +46,7 @@ public class CountNodesBinaryTree {
             //As the given binary tree is a complete binary tree,
             //if at any point left and right subtree has same height means total number of nodes will be 2^(height)-1
             //Note:as left shift or right operator has less priority than operators such as (+,-,*,%),
-            //so compulsoriyly give the bracket to calculate correctly
+            //so compulsorily give the bracket to calculate correctly
             return (1 << (leftHeight)) - 1;
         }
         return 1 + countNodes(root.left) + countNodes(root.right);
