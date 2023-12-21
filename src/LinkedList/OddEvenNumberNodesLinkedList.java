@@ -42,6 +42,7 @@ public class OddEvenNumberNodesLinkedList {
     //TC:O(N)
     //SC:O(1)
     public Node oddEvenNumberList(Node head) {
+        //This problem is similar to sort 0 1 2 linked list
         if (head == null || head.next == null) {
             return head;
         }

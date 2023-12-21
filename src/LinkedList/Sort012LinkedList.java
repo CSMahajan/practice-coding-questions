@@ -38,8 +38,11 @@ public class Sort012LinkedList {
     }
 
     //Function to sort a linked list of 0s, 1s and 2s.
+    //TC:O(N)
+    //SC:O(1)
     public Node sort012LinkedList(Node head) {
         // add your code here
+        //This problem is similar to segregate odd and even numbers in linked list
         if (head == null || head.next == null) {
             return head;
         }
