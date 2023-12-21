@@ -66,8 +66,11 @@ public class Sort012LinkedList {
             }
             temp = temp.next;
         }
+        //establishing connection between zero and one
         zero.next = oneHead.next;
+        //establishing connection between one and two
         one.next = twoHead.next;
+        //ending the connection after two
         two.next = null;
         return zeroHead.next;
     }
