@@ -15,7 +15,7 @@ Example 2:
 Input: head = [2,1,3,5,6,4,7]
 Output: [2,3,6,7,1,5,4]
 */
-public class OddEvenNodesLinkedList {
+public class OddEvenIndexNodesLinkedList {
 
     static class Node {
         int data;
@@ -34,7 +34,7 @@ public class OddEvenNodesLinkedList {
 
     //TC:O(N)
     //SC:O(1)
-    public Node oddEvenList(Node head) {
+    public Node oddEvenIndexList(Node head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -69,18 +69,18 @@ public class OddEvenNodesLinkedList {
 
 
     public static void main(String[] args) {
-        OddEvenNodesLinkedList mll = new OddEvenNodesLinkedList();
+        OddEvenIndexNodesLinkedList mll = new OddEvenIndexNodesLinkedList();
         Node head = new Node(1);
         head.next = new Node(2);
         head.next.next = new Node(3);
         head.next.next.next = new Node(4);
         head.next.next.next.next = new Node(5);
         head.next.next.next.next.next = new Node(6);
-        System.out.println("Linked List before odd even segregating");
+        System.out.println("Linked List before odd even index segregating");
         mll.displayLinkedList(head);
-        Node oddEvenNodeHead = mll.oddEvenList(head);
+        Node oddEvenNodeHead = mll.oddEvenIndexList(head);
         System.out.println();
-        System.out.println("Linked List after odd even segregating");
+        System.out.println("Linked List after odd even index segregating");
         mll.displayLinkedList(oddEvenNodeHead);
     }
 }
