@@ -69,7 +69,7 @@ public class OddEvenIndexNodesLinkedList {
 
 
     public static void main(String[] args) {
-        OddEvenIndexNodesLinkedList mll = new OddEvenIndexNodesLinkedList();
+        OddEvenIndexNodesLinkedList oeinll = new OddEvenIndexNodesLinkedList();
         Node head = new Node(1);
         head.next = new Node(2);
         head.next.next = new Node(3);
@@ -77,10 +77,10 @@ public class OddEvenIndexNodesLinkedList {
         head.next.next.next.next = new Node(5);
         head.next.next.next.next.next = new Node(6);
         System.out.println("Linked List before odd even index segregating");
-        mll.displayLinkedList(head);
-        Node oddEvenNodeHead = mll.oddEvenIndexList(head);
+        oeinll.displayLinkedList(head);
+        Node oddEvenNodeHead = oeinll.oddEvenIndexList(head);
         System.out.println();
         System.out.println("Linked List after odd even index segregating");
-        mll.displayLinkedList(oddEvenNodeHead);
+        oeinll.displayLinkedList(oddEvenNodeHead);
     }
 }
