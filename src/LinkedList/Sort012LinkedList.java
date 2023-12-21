@@ -66,8 +66,9 @@ public class Sort012LinkedList {
             }
             temp = temp.next;
         }
-        //establishing connection between zero and one
-        zero.next = oneHead.next;
+        //establishing connection between zero and one/two
+        //if 1's are not present then link between 0 and 2 is established
+        zero.next = (oneHead.next != null) ? oneHead.next : twoHead.next;
         //establishing connection between one and two
         one.next = twoHead.next;
         //ending the connection after two
