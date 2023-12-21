@@ -40,7 +40,7 @@ public class Sort012LinkedList {
     //Function to sort a linked list of 0s, 1s and 2s.
     public Node sort012LinkedList(Node head) {
         // add your code here
-        
+        return head;
     }
 
     public void displayLinkedList(Node head) {
