@@ -48,8 +48,8 @@ public class OddEvenNumberNodesLinkedList {
         }
         Node odd = new Node(-1);
         Node even = new Node(-1);
-        Node e = even;
-        Node o = odd;
+        Node evenHead = even;
+        Node oddHead = odd;
         Node temp = head;
         while (temp != null) {
             if (temp.data % 2 == 0) {
@@ -61,9 +61,9 @@ public class OddEvenNumberNodesLinkedList {
             }
             temp = temp.next;
         }
-        even.next = o.next;
+        even.next = oddHead.next;
         odd.next = null;
-        return e.next;
+        return evenHead.next;
     }
 
     public void displayLinkedList(Node head) {
