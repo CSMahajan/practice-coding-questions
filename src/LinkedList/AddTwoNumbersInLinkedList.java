@@ -40,7 +40,7 @@ public class AddTwoNumbersInLinkedList {
         ListNode dummy = new ListNode();
         ListNode temp = dummy;
         int carry = 0;
-        while (l1 != null || l2 != null || carry == 1) {
+        while (l1 != null || l2 != null) {
             int sum = 0;
             if (l1 != null) {
                 sum += l1.data;
@@ -54,6 +54,10 @@ public class AddTwoNumbersInLinkedList {
             carry = sum / 10;
             temp.next = new ListNode(sum % 10);
             temp = temp.next;
+        }
+        if(carry > 0) {
+            ListNode newNode = new ListNode(carry);
+            temp.next = newNode;
         }
         return dummy.next;
     }
@@ -70,7 +74,7 @@ public class AddTwoNumbersInLinkedList {
         AddTwoNumbersInLinkedList atnll = new AddTwoNumbersInLinkedList();
         ListNode head1 = new ListNode(2);
         head1.next = new ListNode(4);
-        head1.next.next = new ListNode(3);
+        head1.next.next = new ListNode(9);
         System.out.print("First linked list: ");
         atnll.displayLinkedList(head1);
         ListNode head2 = new ListNode(5);
