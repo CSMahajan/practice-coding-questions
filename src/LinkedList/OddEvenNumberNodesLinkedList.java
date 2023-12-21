@@ -75,7 +75,7 @@ public class OddEvenNumberNodesLinkedList {
 
     public static void main(String[] args) {
         OddEvenNumberNodesLinkedList mll = new OddEvenNumberNodesLinkedList();
-        Node head = new Node(7);
+        Node head = new Node(2);
         head.next = new Node(3);
         head.next.next = new Node(9);
         head.next.next.next = new Node(4);
