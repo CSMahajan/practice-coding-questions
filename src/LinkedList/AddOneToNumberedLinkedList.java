@@ -31,7 +31,7 @@ public class AddOneToNumberedLinkedList {
 
     //TC:O(N)
     //SC:O(N)
-    public static Node addNode(Node head) {
+    public static Node addOneNode(Node head) {
         // Write your code here.
         //recursive function is used to calculating carry without reversing the linked list
         int carry = addOneHelper(head);
@@ -79,7 +79,7 @@ public class AddOneToNumberedLinkedList {
         head.next.next.next.next = new Node(9);
         System.out.println("Before adding 1 to given linked list");
         aonll.displayLinkedList(head);
-        Node reverseHead = aonll.addNode(head);
+        Node reverseHead = aonll.addOneNode(head);
         System.out.println();
         System.out.println("After adding 1 to given linked list");
         aonll.displayLinkedList(reverseHead);
