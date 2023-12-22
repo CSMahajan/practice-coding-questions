@@ -49,6 +49,27 @@ public class RemoveNthNodeFromEndOfLinkedList {
 
     //Time Complexity: O(N)
     //Space Complexity: O(1)
+    public ListNode removeNthFromEndWithoutStartNode(ListNode head, int n) {
+        ListNode fast = head;
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
+        }
+        if (fast == null) {
+            return head.next;
+        }
+        ListNode slow = head;
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        if (slow.next != null) {
+            slow.next = slow.next.next;
+        }
+        return head;
+    }
+
+    //Time Complexity: O(N)
+    //Space Complexity: O(1)
     public ListNode removeNthFromEndOptimised(ListNode head, int n) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
@@ -84,7 +105,7 @@ public class RemoveNthNodeFromEndOfLinkedList {
         System.out.println("Before removing nth node from end of linked list");
         rnfell.displayLinkedList(head);
         int n = 2;
-        ListNode reverseHead = rnfell.removeNthFromEnd(head, n);
+        ListNode reverseHead = rnfell.removeNthFromEndWithoutStartNode(head, n);
         System.out.println();
         System.out.println("After removing nth node from end of linked list");
         rnfell.displayLinkedList(reverseHead);
