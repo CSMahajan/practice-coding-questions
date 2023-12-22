@@ -61,6 +61,28 @@ public class IntersectionOfTwoLinkedLists {
         return first;
     }
 
+    public ListNode getIntersectingNode(ListNode head1, ListNode head2) {
+        if (head1 == null || head2 == null) {
+            return null;
+        }
+        ListNode t1 = head1;
+        ListNode t2 = head2;
+        while (t1 != t2) {
+            t1 = t1.next;
+            t2 = t2.next;
+            if (t1 == t2) {
+                return t1; //or t2 can also be returned as they are same
+            }
+            if (t1 == null) {
+                t1 = head2;
+            }
+            if (t2 == null) {
+                t2 = head1;
+            }
+        }
+        return t1; //or t2 can also be returned as they are same
+    }
+
     public void displayLinkedList(ListNode head) {
         while (head != null) {
             System.out.print(head.data + "->");
@@ -87,7 +109,7 @@ public class IntersectionOfTwoLinkedLists {
         System.out.println();
         System.out.print("Second linked list: ");
         itll.displayLinkedList(head2);
-        ListNode intersectionHead = itll.getIntersectionNode(head1, head2);
+        ListNode intersectionHead = itll.getIntersectingNode(head1, head2);
         System.out.println();
         System.out.print("Intersection point onwards linked list: ");
         itll.displayLinkedList(intersectionHead);
