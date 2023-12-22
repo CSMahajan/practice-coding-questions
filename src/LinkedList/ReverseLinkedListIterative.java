@@ -31,10 +31,10 @@ public class ReverseLinkedListIterative {
     public ListNode reverseList(ListNode head) {
         ListNode previous = null;
         while (head != null) {
-            ListNode next = head.next;
+            ListNode nextNode = head.next;
             head.next = previous;
             previous = head;
-            head = next;
+            head = nextNode;
         }
         return previous;
     }
