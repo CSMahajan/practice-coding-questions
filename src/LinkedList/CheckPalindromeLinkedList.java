@@ -60,6 +60,19 @@ public class CheckPalindromeLinkedList {
         return true;
     }
 
+    private ListNode reverseLinkedList(ListNode head) {
+        ListNode previous = null;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = previous;
+            previous = head;
+            head = next;
+        }
+        return previous;
+    }
+
+    //TC:O(2N)
+    //SC:O(1)
     public boolean checkPalindromeLinkedList(ListNode head) {
         if (head == null || head.next == null) {
             return true;
@@ -90,17 +103,6 @@ public class CheckPalindromeLinkedList {
         //need to make original linked list by reversing it again to avoid modifying existing linked list
         reverseSecondHalfLinkedList(reverseHead);
         return true;
-    }
-
-    private ListNode reverseLinkedList(ListNode head) {
-        ListNode previous = null;
-        while (head != null) {
-            ListNode next = head.next;
-            head.next = previous;
-            previous = head;
-            head = next;
-        }
-        return previous;
     }
 
     private ListNode reverseSecondHalfLinkedList(ListNode head) {
