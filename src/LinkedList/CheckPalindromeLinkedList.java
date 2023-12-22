@@ -34,7 +34,7 @@ public class CheckPalindromeLinkedList {
     //Space Complexity: O(1)
     //Reason: No extra data structures are used.
     public boolean isPalindrome(ListNode head) {
-        if(head==null||head.next==null){
+        if (head == null || head.next == null) {
             return true;
         }
         ListNode slow = head;
@@ -60,6 +60,38 @@ public class CheckPalindromeLinkedList {
         return true;
     }
 
+    public boolean checkPalindromeLinkedList(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+        //Step 1: Reach to middle of linked list using slow and fast pointer approach
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode reverseHead = reverseSecondHalfLinkedList(slow.next);
+        //here first and second points to first half and second half(reversed) linked list respectively
+        ListNode first = head;
+        ListNode second = reverseHead;
+        //Step 2: Compare first half and second half in below while loop condition
+        //check for only second half head because it might have one node less than first half
+        //if total number of nodes are odd number
+        while(second!=null){
+            if(first.data != second.data){
+                //need to make original linked list by reversing it again to avoid modifying existing linked list
+                reverseSecondHalfLinkedList(reverseHead);
+                return false;
+            }
+            first = first.next;
+            second = second.next;
+        }
+        //need to make original linked list by reversing it again to avoid modifying existing linked list
+        reverseSecondHalfLinkedList(reverseHead);
+        return true;
+    }
+
     private ListNode reverseLinkedList(ListNode head) {
         ListNode previous = null;
         while (head != null) {
@@ -71,6 +103,21 @@ public class CheckPalindromeLinkedList {
         return previous;
     }
 
+    private ListNode reverseSecondHalfLinkedList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode previousNode = null;
+        ListNode temp = head;
+        while(temp != null){
+            ListNode nextNode = temp.next;
+            temp.next = previousNode;
+            previousNode = temp;
+            temp = nextNode;
+        }
+        return previousNode;
+    }
+
     public static void main(String[] args) {
         CheckPalindromeLinkedList cpll = new CheckPalindromeLinkedList();
         ListNode head = new ListNode(1);
@@ -78,6 +125,6 @@ public class CheckPalindromeLinkedList {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(2);
         head.next.next.next.next = new ListNode(1);
-        System.out.println(cpll.isPalindrome(head));
+        System.out.println(cpll.checkPalindromeLinkedList(head));
     }
 }
