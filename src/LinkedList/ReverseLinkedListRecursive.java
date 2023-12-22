@@ -32,10 +32,11 @@ public class ReverseLinkedListRecursive {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode reverseListNode = reverseList(head.next);
-        head.next.next = head;
+        ListNode reverseHead = reverseList(head.next);
+        ListNode front = head.next;
+        front.next = head;
         head.next = null;
-        return reverseListNode;
+        return reverseHead;
     }
 
     public void displayLinkedList(ListNode head) {
