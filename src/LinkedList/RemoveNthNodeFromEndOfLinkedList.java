@@ -102,12 +102,12 @@ public class RemoveNthNodeFromEndOfLinkedList {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
-        System.out.println("Before removing nth node from end of linked list");
-        rnfell.displayLinkedList(head);
         int n = 2;
+        System.out.println("Before removing " + n + "th node from end of linked list");
+        rnfell.displayLinkedList(head);
         ListNode reverseHead = rnfell.removeNthFromEndWithoutStartNode(head, n);
         System.out.println();
-        System.out.println("After removing nth node from end of linked list");
+        System.out.println("After removing " + n + "th node from end of linked list");
         rnfell.displayLinkedList(reverseHead);
     }
 }
