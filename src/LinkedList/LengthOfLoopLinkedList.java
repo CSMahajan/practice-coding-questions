@@ -50,14 +50,6 @@ public class LengthOfLoopLinkedList {
         return 0;
     }
 
-    public void displayLinkedList(Node head) {
-        while (head != null) {
-            System.out.print(head.data + "->");
-            head = head.next;
-        }
-        System.out.print("null");
-    }
-
     private int findLengthOfLoop(Node slow, Node fast) {
         int count = 1;
         //need to start fast from next of collision point of slow and fast to calculate length of loop
@@ -77,8 +69,7 @@ public class LengthOfLoopLinkedList {
         head.next.next.next = new Node(4);
         head.next.next.next.next = new Node(5);
         head.next.next.next.next.next = head.next.next;
-        //cldll.displayLinkedList(head);
         System.out.println();
-        System.out.println("Length of loop in given linked list : "+lll.countTotalNodesInLoop(head));
+        System.out.println("Length of loop in given linked list : " + lll.countTotalNodesInLoop(head));
     }
 }
