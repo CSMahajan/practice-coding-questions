@@ -38,6 +38,35 @@ public class LengthOfLoopLinkedList {
 
     public int countTotalNodesInLoop(Node head) {
         //Add your code here.
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return findLengthOfLoop(slow, fast);
+            }
+        }
+        return 0;
+    }
+
+    public void displayLinkedList(Node head) {
+        while (head != null) {
+            System.out.print(head.data + "->");
+            head = head.next;
+        }
+        System.out.print("null");
+    }
+
+    private int findLengthOfLoop(Node slow, Node fast) {
+        int count = 1;
+        //need to start fast from next of collision point of slow and fast to calculate length of loop
+        fast = fast.next;
+        while (slow != fast) {
+            fast = fast.next;
+            count++;
+        }
+        return count;
     }
 
     public static void main(String[] args) {
@@ -48,6 +77,8 @@ public class LengthOfLoopLinkedList {
         head.next.next.next = new Node(4);
         head.next.next.next.next = new Node(5);
         head.next.next.next.next.next = head.next.next;
-        System.out.println(cldll.countTotalNodesInLoop(head));
+        //cldll.displayLinkedList(head);
+        System.out.println();
+        System.out.println("Length of loop in given linked list : "+cldll.countTotalNodesInLoop(head));
     }
 }
