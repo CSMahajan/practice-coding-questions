@@ -24,7 +24,7 @@ Output: no cycle
 Explanation: There is no cycle in the linked list.
 */
 
-public class FindFirstNodeOfLoopInLinkedList {
+public class StartingNodeOfLoopInLinkedList {
 
     static class ListNode {
         int data;
@@ -37,35 +37,33 @@ public class FindFirstNodeOfLoopInLinkedList {
 
     //TC:O(N)
     //SC:O(1)
-    public ListNode findFirstNodeInCycleLinkedList(ListNode head) {
-        if (head == null || head.next == null) {
-            return null;
-        }
+    public ListNode findStartingNodeInCycleLinkedList(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
-        ListNode entry = head;
-        while (fast.next != null && fast.next.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
             if (slow == fast) {
-                while (slow != entry) {
+                //loop(cycle) is present in linked list
+                slow = head;
+                while(slow != fast){
+                    fast = fast.next;
                     slow = slow.next;
-                    entry = entry.next;
                 }
-                return entry;
+                return slow;
             }
         }
         return null;
     }
 
     public static void main(String[] args) {
-        FindFirstNodeOfLoopInLinkedList ffnll = new FindFirstNodeOfLoopInLinkedList();
+        StartingNodeOfLoopInLinkedList ffnll = new StartingNodeOfLoopInLinkedList();
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
         head.next.next.next.next.next = head.next.next;
-        System.out.println(ffnll.findFirstNodeInCycleLinkedList(head).data);
+        System.out.println(ffnll.findStartingNodeInCycleLinkedList(head).data);
     }
 }
