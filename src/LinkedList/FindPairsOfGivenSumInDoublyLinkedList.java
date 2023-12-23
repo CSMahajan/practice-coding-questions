@@ -83,7 +83,6 @@ public class FindPairsOfGivenSumInDoublyLinkedList {
         return tail;
     }
 
-
     public void displayLinkedList(Node head) {
         while (head != null) {
             System.out.print(head.data + "->");
