@@ -70,7 +70,7 @@ public class LengthOfLoopLinkedList {
     }
 
     public static void main(String[] args) {
-        LengthOfLoopLinkedList cldll = new LengthOfLoopLinkedList();
+        LengthOfLoopLinkedList lll = new LengthOfLoopLinkedList();
         Node head = new Node(1);
         head.next = new Node(2);
         head.next.next = new Node(3);
@@ -79,6 +79,6 @@ public class LengthOfLoopLinkedList {
         head.next.next.next.next.next = head.next.next;
         //cldll.displayLinkedList(head);
         System.out.println();
-        System.out.println("Length of loop in given linked list : "+cldll.countTotalNodesInLoop(head));
+        System.out.println("Length of loop in given linked list : "+lll.countTotalNodesInLoop(head));
     }
 }
