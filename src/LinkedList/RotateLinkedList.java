@@ -102,13 +102,10 @@ public class RotateLinkedList {
             return head;
         }
         k = k % length;
-        //performing below step only for left rotation,
-        //in case of right it is not required to be performed i.e.(k = length - k)
-        k = length - k;
         //assigning next of tail as head
         tail.next = head;
-        //finding (length - k)th node to mark it as last node;
-        ListNode nthNode = getNthNode(head, length - k);
+        //finding k-th node to mark it as last node in case of left rotate;
+        ListNode nthNode = getNthNode(head, k);
         //before marking n-th node as the last node, updating head
         head = nthNode.next;
         nthNode.next = null;
@@ -148,7 +145,7 @@ public class RotateLinkedList {
         int k = 3;
         System.out.println("Before right rotating a linked list by " + k);
         rll.displayLinkedList(head);
-        ListNode rotatedHead = rll.rotateRightKTimes(head, k);
+        ListNode rotatedHead = rll.rotateLeftKTimes(head, k);
         System.out.println();
         System.out.println("After right rotating a linked list by " + k);
         rll.displayLinkedList(rotatedHead);
