@@ -82,6 +82,70 @@ public class ReverseLinkedListInKSizeGroups {
         return previous;
     }
 
+    //Time Complexity: O(N)
+    //Reason: Nested iteration with O((N/k)*k) which makes it equal to O(N).
+    //Space Complexity: O(1)
+    //Reason: No extra data structures are used for computation.
+    public ListNode reverseKSizeNodes(ListNode head, int k) {
+        ListNode temp = head;
+        //previousLastNode denotes the last node of the previous k size group
+        ListNode previousLastNode = null;
+        while (temp != null) {
+            //Step 1: Get k th node of every section of linked list
+            ListNode kthNode = getKthNode(temp, k);
+            if (kthNode == null) {
+                //if current section is of size less than k
+                if (previousLastNode != null) {
+                    //updating the previous sections last nodes next to be temp because we had cut that link below
+                    previousLastNode.next = temp;
+                }
+                break;
+            }
+            //Step 2: preserving nextNode after kth node
+            ListNode nextNode = kthNode.next;
+            //Step 3: cutting the link for every k nodes to reverse them
+            kthNode.next = null;
+            //Step 4: reversing the given linked list in place
+            reverseKSizeLinkedList(temp);
+            //Step 5: establish the broken link between two groups
+            //as for every section kthNode is going to be the head, so establishing the broken link between these two k groups
+            if (temp == head) {
+                //as for every section k-th Node is going to be the head,
+                //this is going to occur for first k size group because we need to return the head of new linked list
+                head = kthNode;
+            } else {
+                //establishing link for previous k groups last node to kth node(which is current k groups head)
+                previousLastNode.next = kthNode;
+            }
+            //Step 6: Updating previous last node
+            previousLastNode = temp;
+            //Step 7: Moving to next k-th group start point
+            temp = nextNode;
+        }
+        return head;
+    }
+
+    private ListNode getKthNode(ListNode temp, int k) {
+        //reducing k by 1 as we will stop at temp=null(possible k-th node)
+        k--;
+        while(temp != null && k > 0) {
+            k--;
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    private ListNode reverseKSizeLinkedList(ListNode temp){
+        ListNode previous = null;
+        while(temp != null) {
+            ListNode nextNode = temp.next;
+            temp.next = previous;
+            previous = temp;
+            temp = nextNode;
+        }
+        return previous;
+    }
+
     private int getLengthOfLinkedList(ListNode head) {
         int length = 0;
         while (head != null) {
@@ -112,7 +176,7 @@ public class ReverseLinkedListInKSizeGroups {
         int k = 3;
         System.out.println("Before reversing a linked list in groups of size " + k);
         rllksg.displayLinkedList(head);
-        ListNode reverseHead = rllksg.reverseKGroup(head, k);
+        ListNode reverseHead = rllksg.reverseKSizeNodes(head, k);
         System.out.println();
         System.out.println("After reversing a linked list in groups of size " + k);
         rllksg.displayLinkedList(reverseHead);
