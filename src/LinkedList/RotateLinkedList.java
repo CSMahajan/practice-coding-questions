@@ -73,6 +73,7 @@ public class RotateLinkedList {
         if (k % length == 0) {
             return head;
         }
+        k = k % length;
         //assigning next of tail as head
         tail.next = head;
         //finding (length - k)th node to mark it as last node;
