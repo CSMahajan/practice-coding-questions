@@ -55,6 +55,75 @@ public class RotateLinkedList {
         return head;
     }
 
+    //Time Complexity: O(length of list) + O(length of list – (length of list%k))
+    //Reason: O(length of the list) for calculating the length of the list.
+    //O(length of the list – (length of list%k)) for breaking link.
+    //Space Complexity: O(1)
+    //Reason: No extra data structure is used for computation.
+    public ListNode rotateRightKTimes(ListNode head, int k) {
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
+        int length = 1;
+        ListNode tail = head;
+        while (tail.next != null) {
+            tail = tail.next;
+            length++;
+        }
+        if (k % length == 0) {
+            return head;
+        }
+        //assigning next of tail as head
+        tail.next = head;
+        //finding (length - k)th node to mark it as last node;
+        ListNode nthNode = getNthNode(head, length - k);
+        //before marking n-th node as the last node, updating head
+        head = nthNode.next;
+        nthNode.next = null;
+        return head;
+    }
+
+    //Time Complexity: O(2 * length of list)
+    //Reason: O(length of the list) for calculating the length of the list.
+    //O(length of the list for breaking link at k = 1 at worst.
+    //Space Complexity: O(1)
+    //Reason: No extra data structure is used for computation.
+    public ListNode rotateLeftKTimes(ListNode head, int k) {
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
+        int length = 1;
+        ListNode tail = head;
+        while (tail.next != null) {
+            tail = tail.next;
+            length++;
+        }
+        if (k % length == 0) {
+            return head;
+        }
+        k = k % length;
+        k = length - k;
+        //assigning next of tail as head
+        tail.next = head;
+        //finding (length - k)th node to mark it as last node;
+        ListNode nthNode = getNthNode(head, length - k);
+        //before marking n-th node as the last node, updating head
+        head = nthNode.next;
+        nthNode.next = null;
+        return head;
+    }
+
+    private ListNode getNthNode(ListNode temp, int k) {
+        int count = 1;
+        while (temp != null) {
+            if (count == k) {
+                return temp;
+            }
+            count++;
+            temp = temp.next;
+        }
+        return temp;
+    }
 
     public void displayLinkedList(ListNode head) {
         while (head != null) {
@@ -77,9 +146,9 @@ public class RotateLinkedList {
         int k = 3;
         System.out.println("Before right rotating a linked list by " + k);
         rll.displayLinkedList(head);
-        ListNode reverseHead = rll.rotateRight(head, k);
+        ListNode rotatedHead = rll.rotateRightKTimes(head, k);
         System.out.println();
         System.out.println("After right rotating a linked list by " + k);
-        rll.displayLinkedList(reverseHead);
+        rll.displayLinkedList(rotatedHead);
     }
 }
