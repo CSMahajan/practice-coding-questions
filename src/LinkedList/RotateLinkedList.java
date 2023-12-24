@@ -102,6 +102,8 @@ public class RotateLinkedList {
             return head;
         }
         k = k % length;
+        //performing below step only for left rotation,
+        //in case of right it is not required to be performed i.e.(k = length - k)
         k = length - k;
         //assigning next of tail as head
         tail.next = head;
