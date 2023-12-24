@@ -76,10 +76,10 @@ public class RotateLinkedList {
         //assigning next of tail as head
         tail.next = head;
         //finding (length - k)th node to mark it as last node;
-        ListNode nthNode = getNthNode(head, length - k);
+        ListNode newLastNode = getNthNode(head, length - k);
         //before marking n-th node as the last node, updating head
-        head = nthNode.next;
-        nthNode.next = null;
+        head = newLastNode.next;
+        newLastNode.next = null;
         return head;
     }
 
@@ -105,10 +105,10 @@ public class RotateLinkedList {
         //assigning next of tail as head
         tail.next = head;
         //finding k-th node to mark it as last node in case of left rotate;
-        ListNode nthNode = getNthNode(head, k);
+        ListNode newLastNode = getNthNode(head, k);
         //before marking n-th node as the last node, updating head
-        head = nthNode.next;
-        nthNode.next = null;
+        head = newLastNode.next;
+        newLastNode.next = null;
         return head;
     }
 
