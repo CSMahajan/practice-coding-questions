@@ -59,9 +59,8 @@ public class FlatteningLinkedList {
         if (root == null || root.next == null) {
             return root;
         }
-        root.next = flatten(root.next);
-        root = mergeTwoLinkedLists(root, root.next);
-        return root;
+        ListNode mergeHead = flatten(root.next);
+        return mergeTwoLinkedLists(root, mergeHead);
     }
 
     private ListNode mergeTwoLinkedLists(ListNode first, ListNode second) {
