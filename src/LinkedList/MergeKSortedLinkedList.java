@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.PriorityQueue;
+
 /*
 Merge k Sorted Lists
 
@@ -35,8 +37,39 @@ public class MergeKSortedLinkedList {
 
     }
 
+    static class Pair {
+        int nodeValue;
+        ListNode node;
+
+        public Pair(int nodeValue, ListNode node) {
+            this.nodeValue = nodeValue;
+            this.node = node;
+        }
+    }
+
+    //TC:O(K*logK + N*K*logK)
+    //Reason: for loop has K lists are present and to add each element in priority queue takes logK time
+    //while loop has for at most N elements per linked list with 2 operations(add,poll) of logK time
+    //SC:O(K)
+    //Reason: we need to store at a time K elements(1 element from each list into priority queue
     public ListNode mergeKLists(ListNode[] lists) {
-        return null;
+        PriorityQueue<Pair> priorityQueue = new PriorityQueue<>((p1, p2) -> p1.nodeValue - p2.nodeValue);
+        for (ListNode node : lists) {
+            if (node != null) {
+                priorityQueue.offer(new Pair(node.data, node));
+            }
+        }
+        ListNode dummyNode = new ListNode(-1);
+        ListNode temp = dummyNode;
+        while (!priorityQueue.isEmpty()) {
+            Pair pair = priorityQueue.poll();
+            if (pair.node.next != null) {
+                priorityQueue.add(new Pair(pair.node.next.data, pair.node.next));
+            }
+            temp.next = pair.node;
+            temp = temp.next;
+        }
+        return dummyNode.next;
     }
 
     public void displayLinkedList(ListNode head) {
@@ -60,7 +93,7 @@ public class MergeKSortedLinkedList {
         ListNode[] lists = {head1, head2, head3};
         System.out.print("Given linked list: ");
         System.out.println();
-        for(ListNode node: lists) {
+        for (ListNode node : lists) {
             mksll.displayLinkedList(node);
             System.out.println();
         }
