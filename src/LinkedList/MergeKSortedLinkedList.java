@@ -36,6 +36,36 @@ public class MergeKSortedLinkedList {
     }
 
     public ListNode mergeKLists(ListNode[] lists) {
+        return null;
+    }
 
+    public void displayLinkedList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.data + "->");
+            head = head.next;
+        }
+        System.out.print("null");
+    }
+
+    public static void main(String[] args) {
+        MergeKSortedLinkedList mksll = new MergeKSortedLinkedList();
+        ListNode head1 = new ListNode(1);
+        head1.next = new ListNode(4);
+        head1.next.next = new ListNode(5);
+        ListNode head2 = new ListNode(1);
+        head2.next = new ListNode(3);
+        head2.next.next = new ListNode(4);
+        ListNode head3 = new ListNode(2);
+        head3.next = new ListNode(6);
+        ListNode[] lists = {head1, head2, head3};
+        System.out.print("Given linked list: ");
+        System.out.println();
+        for(ListNode node: lists) {
+            mksll.displayLinkedList(node);
+            System.out.println();
+        }
+        ListNode mergedKListHead = mksll.mergeKLists(lists);
+        System.out.print("Merged linked list: ");
+        mksll.displayLinkedList(mergedKListHead);
     }
 }
