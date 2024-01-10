@@ -32,8 +32,8 @@ public class MergeTwoSortedLinkedList {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode dummyNode = new ListNode(-1);
         ListNode temp = dummyNode;
-        while(list1 != null && list2 != null){
-            if(list1.data < list2.data){
+        while (list1 != null && list2 != null) {
+            if (list1.data < list2.data) {
                 temp.next = list1;
                 temp = temp.next;
                 list1 = list1.next;
@@ -43,7 +43,7 @@ public class MergeTwoSortedLinkedList {
                 list2 = list2.next;
             }
         }
-        if(list1 != null){
+        if (list1 != null) {
             temp.next = list1;
         } else {
             temp.next = list2;

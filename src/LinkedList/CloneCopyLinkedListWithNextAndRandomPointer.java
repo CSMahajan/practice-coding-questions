@@ -36,41 +36,50 @@ public class CloneCopyLinkedListWithNextAndRandomPointer {
     //Space Complexity: O(1)
     //Reason: No extra data structure was used for computation.
     public ListNode copyRandomList(ListNode head) {
+        //Step 1: insert copy nodes in between original list
+        insertCopyInBetweenOriginalLinkedList(head);
+        //Step 2: connect random pointers
+        connectRandomPointersInDeepCopyList(head);
+        //Step 3: get deep copy linked list
+        return getDeepCopyLinkedList(head);
+    }
+
+    private void insertCopyInBetweenOriginalLinkedList(ListNode head) {
         ListNode temp = head;
-        //Step 1: Create a copy nodes linked list
-        //where new nodes are inserted in between original linked list with pointing of next pointers
         while (temp != null) {
-            ListNode newNode = new ListNode(temp.data);
-            newNode.next = temp.next;
-            temp.next = newNode;
+            ListNode copyNode = new ListNode(temp.data);
+            ListNode nextNode = temp.next;
+            temp.next = copyNode;
+            copyNode.next = nextNode;
+            temp = nextNode;
+        }
+    }
+
+    private void connectRandomPointersInDeepCopyList(ListNode head) {
+        ListNode temp = head;
+        while (temp != null) {
+            ListNode copyNode = temp.next;
+            if (temp.random != null) {
+                copyNode.random = temp.random.next;
+            } else {
+                copyNode.random = null;
+            }
             temp = temp.next.next;
         }
-        //Step 2: Create random pointer pointing in deep copy similar to original linked list random pointer pointing
-        ListNode iter = head;
-        while (iter != null) {
-            if (iter.random != null) {
-                iter.next.random = iter.random.next;
-            }
-            iter = iter.next.next;
-        }
-        //Step 3: Make original linked list and deep copy linked list pointing correct by removing pointing between original and deep copy
-        ListNode dummy = new ListNode(0);
-        //here iter will move on to original list
-        //temp will move on to deep copy linked list
-        //fast will always be next node of original linked list
-        //(in order to establish a link between current to next nodes in original linked list) and
-        //(current to next nodes in copy linked list)
-        iter = head;
-        temp = dummy;
-        ListNode fast;
-        while (iter != null) {
-            fast = iter.next.next;
-            temp.next = iter.next;
-            iter.next = fast;
+    }
+
+    private ListNode getDeepCopyLinkedList(ListNode head) {
+        ListNode temp = head;
+        ListNode dummyNode = new ListNode(-1);
+        ListNode result = dummyNode;
+        while (temp != null) {
+            result.next = temp.next;
+            result = result.next;
+            //disconnecting the newly created links and going back to original next links
+            temp.next = temp.next.next;
             temp = temp.next;
-            iter = fast;
         }
-        return dummy.next;
+        return dummyNode.next;
     }
 
     public void displayLinkedList(ListNode head) {

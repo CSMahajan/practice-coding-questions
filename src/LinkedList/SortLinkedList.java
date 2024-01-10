@@ -29,7 +29,7 @@ public class SortLinkedList {
     //TC: O(logN *(N+N/2))
     //SC: O(logN)
     public ListNode sortLinkedList(ListNode head) {
-        if(head == null||head.next==null){
+        if (head == null || head.next == null) {
             return head;
         }
         //applying merge sort on linked list
@@ -41,14 +41,14 @@ public class SortLinkedList {
         middleNode.next = null;
         leftHead = sortLinkedList(leftHead);
         rightHead = sortLinkedList(rightHead);
-        return mergeSortedLinkedLists(leftHead,rightHead);
+        return mergeSortedLinkedLists(leftHead, rightHead);
     }
 
     private ListNode mergeSortedLinkedLists(ListNode head1, ListNode head2) {
         ListNode dummyNode = new ListNode(-1);
         ListNode temp = dummyNode;
-        while(head1 != null && head2 != null){
-            if(head1.data < head2.data){
+        while (head1 != null && head2 != null) {
+            if (head1.data < head2.data) {
                 temp.next = head1;
                 temp = temp.next;
                 head1 = head1.next;
@@ -58,7 +58,7 @@ public class SortLinkedList {
                 head2 = head2.next;
             }
         }
-        if(head1 != null){
+        if (head1 != null) {
             temp.next = head1;
         } else {
             temp.next = head2;
@@ -71,7 +71,7 @@ public class SortLinkedList {
         //we are starting fast 1 place ahead than normal
         //tortoise and hare(slow and fast pointer approach) to find middle node of linked list
         ListNode fast = head.next;
-        while(fast != null && fast.next != null){
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
