@@ -64,7 +64,7 @@ public class FlatteningLinkedList {
     }
 
     private ListNode mergeTwoLinkedLists(ListNode first, ListNode second) {
-        ListNode temp = new ListNode(0);
+        ListNode temp = new ListNode(-1);
         ListNode mergedNode = temp;
         while (first != null && second != null) {
             if (first.data < second.data) {
