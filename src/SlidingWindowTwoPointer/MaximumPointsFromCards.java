@@ -29,12 +29,16 @@ public class MaximumPointsFromCards {
 
     public int maxScore(int[] cardPoints, int k) {
         int lSum = 0, rSum = 0;
+        //calculate total sum in lsum
         for (int i = 0; i < k; i++) {
             lSum += cardPoints[i];
         }
+        //to find the longest sub array with sum <= k
         int maxSum = lSum, rightIndex = cardPoints.length - 1;
         for (int i = k - 1; i >= 0; i--, rightIndex--) {
+            //reduce sum from left side
             lSum -= cardPoints[i];
+            //add sum to right side
             rSum += cardPoints[rightIndex];
             maxSum = Math.max(maxSum, lSum + rSum);
         }
