@@ -37,6 +37,7 @@ public class FruitIntoBaskets {
     //TC:O(N)
     //SC:O(1)
     public int totalFruit(int[] fruits) {
+        //logic is similar to LongestSubstringKMostDistinctCharacters
         int n = fruits.length;
         int l = 0, r = 0, maxLength = 0;
         Map<Integer, Integer> map = new HashMap<>();
