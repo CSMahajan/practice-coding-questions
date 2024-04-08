@@ -27,7 +27,36 @@ public class LongestRepeatingCharacterReplacement {
     //TC:O(N)
     //SC:O(1)
     public int characterReplacement(String s, int k) {
-return 0;
+        int n = s.length();
+        int l = 0, r = 0, maxFrequency = 0, maxLength = 0;
+        //maxFrequency denotes the maximum frequency of any character in the string
+        //s is going to be of only uppercase letters, so hash of 26 is sufficient
+        //the number of operations required to make the longest string with same character
+        //can be calculated by length of window - maximum frequency
+        //where current window calculated by r-l+1
+        //so this difference signifies the minimum possible operations to be performed
+        //for maximising string of one character repeated
+        int[] hash = new int[26];
+        while (r < n) {
+            int rHash = s.charAt(r) - 'A';
+            int lHash = s.charAt(l) - 'A';
+            hash[rHash]++;
+            maxFrequency = Math.max(maxFrequency, hash[rHash]);
+            if ((r - l + 1) - maxFrequency > k) {
+                //if required number of replacement operations cross the limit k,
+                //then reduce from left side of window
+                hash[lHash]--;
+                maxFrequency = 0;
+                //moving the window from left side
+                l++;
+            }
+            if ((r - l + 1) - maxFrequency <= k) {
+                //updating the maxLength if replacement operations are within the limit
+                maxLength = Math.max(maxLength, r - l + 1);
+            }
+            r++;
+        }
+        return maxLength;
     }
 
     public static void main(String[] args) {
