@@ -1,8 +1,5 @@
 package SlidingWindowTwoPointer;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /*
 Longest Repeating Character Replacement
 
