@@ -22,15 +22,26 @@ Input: cardPoints = [9,7,7,9,7,7,9], k = 7
 Output: 55
 Explanation: You have to take all the cards. Your score is the sum of points of all cards.
 */
+package SlidingWindowTwoPointer;
 
 public class MaximumPointsFromCards {
 
     public int maxScore(int[] cardPoints, int k) {
-
+        int lSum = 0, rSum = 0;
+        for (int i = 0; i < k; i++) {
+            lSum += cardPoints[i];
+        }
+        int maxSum = lSum, rightIndex = cardPoints.length - 1;
+        for (int i = k - 1; i >= 0; i--, rightIndex--) {
+            lSum -= cardPoints[i];
+            rSum += cardPoints[rightIndex];
+            maxSum = Math.max(maxSum, lSum + rSum);
+        }
+        return maxSum;
     }
 
     public static void main(String[] args) {
-        int[] cardPoints = {1,2,3,4,5,6,1};
+        int[] cardPoints = {1, 2, 3, 4, 5, 6, 1};
         int k = 3;
         MaximumPointsFromCards mpfc = new MaximumPointsFromCards();
         System.out.println(mpfc.maxScore(cardPoints, k));
