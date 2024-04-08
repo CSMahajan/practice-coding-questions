@@ -27,6 +27,8 @@ Explanation: You have to take all the cards. Your score is the sum of points of 
 
 public class MaximumPointsFromCards {
 
+    //TC:O(N)
+    //SC:O(1)
     public int maxScore(int[] cardPoints, int k) {
         int lSum = 0, rSum = 0;
         //calculate total sum in lsum

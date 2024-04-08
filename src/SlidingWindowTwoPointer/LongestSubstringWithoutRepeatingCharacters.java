@@ -22,6 +22,8 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 */
 public class LongestSubstringWithoutRepeatingCharacters {
 
+    //TC:O(N)
+    //SC:O(1)
     public int lengthOfLongestSubstring(String s) {
         int n = s.length();
         int l = 0, r = 0, maxLength = 0;
