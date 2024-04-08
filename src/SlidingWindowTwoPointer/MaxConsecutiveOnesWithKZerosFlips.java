@@ -23,24 +23,24 @@ public class MaxConsecutiveOnesWithKZerosFlips {
     public int longestOnes(int[] nums, int k) {
         int n = nums.length;
         int maxLength = 0;
-        int l =0, r=0;
+        int l = 0, r = 0;
         int countOfZero = 0;
-        while(r<n){
+        while (r < n) {
             //if current is 0, increase zeros count
-            if(nums[r]==0){
+            if (nums[r] == 0) {
                 countOfZero++;
             }
             //if zeros count crosses threshold, move left pointer of the window
             //while moving if left pointer is at 0, moving/shifting the window by reducing the zeros count
-            if(countOfZero  > k){
-                if(nums[l]==0){
+            if (countOfZero > k) {
+                if (nums[l] == 0) {
                     countOfZero--;
                 }
                 l++;
             }
             //if zeros count stays within limit, calculate length of the window and store maxLength
-            if(countOfZero <= k) {
-                int length = r -l+1;
+            if (countOfZero <= k) {
+                int length = r - l + 1;
                 maxLength = Math.max(maxLength, length);
             }
             //move the right pointer
@@ -50,7 +50,7 @@ public class MaxConsecutiveOnesWithKZerosFlips {
     }
 
     public static void main(String[] args) {
-        int[] nums = {1,1,1,0,0,0,1,1,1,1,0};
+        int[] nums = {1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0};
         int k = 2;
         MaxConsecutiveOnesWithKZerosFlips mcowkzf = new MaxConsecutiveOnesWithKZerosFlips();
         System.out.println(mcowkzf.longestOnes(nums, k));
