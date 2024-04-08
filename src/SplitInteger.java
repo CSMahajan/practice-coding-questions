@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ss {
+public class SplitInteger {
 
     public static List<Integer> splitInteger(int num, int parts) {
         int base = num / parts;

@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class SampleDemo {
+public class CyclicString {
 
 
     public static int cyclicStringLength(String s) {
