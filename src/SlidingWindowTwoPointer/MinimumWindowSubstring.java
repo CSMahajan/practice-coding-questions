@@ -1,6 +1,7 @@
 package SlidingWindowTwoPointer;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /*
 Minimum Window Substring
@@ -72,37 +73,37 @@ public class MinimumWindowSubstring {
     }
 
     public String minWindowUsingHashMap(String s, String t) {
-        int l=0;
-        int r=0;
-        HashMap<Character,Integer> mpp=new HashMap<>();
-        int cnt=0;
-        int sindex=-1;
-        int minlen=Integer.MAX_VALUE;
-        for(int i=0;i<t.length();i++){
-            mpp.put(t.charAt(i), mpp.getOrDefault(t.charAt(i), 0) + 1);
+        int l = 0;
+        int r = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        int count = 0;
+        int startingIndex = -1;
+        int minLength = Integer.MAX_VALUE;
+        for (int i = 0; i < t.length(); i++) {
+            map.put(t.charAt(i), map.getOrDefault(t.charAt(i), 0) + 1);
         }
-        while(r<s.length()){
-            char ch=s.charAt(r);
-            if(mpp.containsKey(ch) && mpp.get(ch)>0){
-                cnt++;
+        while (r < s.length()) {
+            char rWindowChar = s.charAt(r);
+            if (map.containsKey(rWindowChar) && map.get(rWindowChar) > 0) {
+                count++;
             }
-            mpp.put(ch,mpp.getOrDefault(ch,0)-1);
-            while(cnt==t.length()){
-                if(r-l+1<minlen){
-                    minlen=r-l+1;
-                    sindex=l;
+            map.put(rWindowChar, map.getOrDefault(rWindowChar, 0) - 1);
+            while (count == t.length()) {
+                if (r - l + 1 < minLength) {
+                    minLength = r - l + 1;
+                    startingIndex = l;
                 }
-                mpp.put(s.charAt(l),mpp.get(s.charAt(l))+1);
-                if(mpp.get(s.charAt(l))>0){
-                    cnt--;
+                char lWindowChar = s.charAt(l);
+                map.put(lWindowChar, map.get(lWindowChar) + 1);
+                if (map.get(lWindowChar) > 0) {
+                    count--;
                 }
                 l++;
             }
             r++;
         }
-        return sindex==-1?"":s.substring(sindex,sindex+minlen);
+        return startingIndex == -1 ? "" : s.substring(startingIndex, startingIndex + minLength);
     }
-
 
 
     public static void main(String[] args) {
