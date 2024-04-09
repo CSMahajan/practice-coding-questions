@@ -26,8 +26,8 @@ public class CountNumberOfNiceSubarraysKOddNumbers {
         //This problem is exactly similar to BinarySubarraysWithSum
         //The only difference is sum = goal is replaced by count of k odd numbers in each subarray
         //if we want to find count of subarrays with odd numbers with k count in each subarray,
-        //then we can calculate {sum <= k} and {sum <= (k-1)} and its
-        //difference will give us the total number of subarrays with sum equal to goal
+        //then we can calculate {count <= k} and {count <= (k-1)} and its
+        //difference will give us the total number of subarrays with count equal to k
         //otherwise this can also be solved using prefixSum with TC:O(N), SC:O(N)
         int lessOrEqualToKCount = countSubarraysLessThanOrEqualToK(nums, k);
         int lessOrEqualToKMinusOneCount = countSubarraysLessThanOrEqualToK(nums, k - 1);
