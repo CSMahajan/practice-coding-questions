@@ -8,7 +8,7 @@ Given a number n, check it is power of 2
 public class CheckIfNumberIsPowerOf2UsingAND {
 
     public boolean isPowerOf2(int n) {
-        return (n & (n - 1)) == 0;
+        return (n & (n - 1)) == 0 && n > 0;
     }
 
     public static void main(String[] args) {
