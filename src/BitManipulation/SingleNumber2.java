@@ -33,10 +33,22 @@ public class SingleNumber2 {
         return singleOccurringNumber;
     }
 
+    //TC:O(N)
+    //SC:O(1)
+    public int singleNumberUsingBit(int[] nums) {
+        int ones = 0, twos = 0;
+        for (int num : nums) {
+            ones = (ones ^ num) & ~twos;
+            twos = (twos ^ num) & ~ones;
+        }
+        return ones;
+    }
+
     public static void main(String[] args) {
         int[] nums = {0, 1, 0, 1, 0, 1, 99};
         SingleNumber2 sn2 = new SingleNumber2();
         System.out.println(sn2.singleNumber(nums));
+        System.out.println(sn2.singleNumberUsingBit(nums));
     }
 }
 

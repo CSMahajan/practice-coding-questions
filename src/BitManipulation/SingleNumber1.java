@@ -28,7 +28,7 @@ public class SingleNumber1 {
 
     public static void main(String[] args) {
         int[] nums = {4, 1, 2, 1, 2};
-        SingleNumber1 sn = new SingleNumber1();
-        System.out.println(sn.singleNumber(nums));
+        SingleNumber1 sn1 = new SingleNumber1();
+        System.out.println(sn1.singleNumber(nums));
     }
 }
