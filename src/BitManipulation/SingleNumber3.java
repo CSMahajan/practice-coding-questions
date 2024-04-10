@@ -22,13 +22,31 @@ Output: [1,0]
 */
 public class SingleNumber3 {
 
+    //TC:O(2N)
+    //SC:O(1)
     public int[] singleNumber(int[] nums) {
-
+        int xorr = 0;
+        for (int num : nums) {
+            xorr ^= num;
+        }
+        //this is how we can find differentiating bit position among 2 distinct numbers right most bit
+        int rightMostBit = (xorr & (xorr - 1)) ^ xorr;
+        //numbers with bit set will go in b1 and not set will go in b2
+        int b1 = 0;
+        int b2 = 0;
+        for (int num : nums) {
+            if ((num & rightMostBit) != 0) {
+                b1 ^= num;
+            } else {
+                b2 ^= num;
+            }
+        }
+        return new int[]{b1, b2};
     }
 
     public static void main(String[] args) {
         SingleNumber3 sn3 = new SingleNumber3();
-        int[] nums = {1,2,1,3,2,5};
+        int[] nums = {1, 2, 1, 3, 2, 5};
         System.out.println(Arrays.toString(sn3.singleNumber(nums)));
     }
 }
