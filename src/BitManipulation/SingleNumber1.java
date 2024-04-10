@@ -16,20 +16,19 @@ Example 3:
 Input: nums = [1]
 Output: 1
 */
-public class SingleNumber {
+public class SingleNumber1 {
 
     public int singleNumber(int[] nums) {
-        int n = nums.length;
         int xor = 0;
-        for (int i = 0; i < n; i++) {
-            xor ^= nums[i];
+        for (int num : nums) {
+            xor ^= num;
         }
         return xor;
     }
 
     public static void main(String[] args) {
         int[] nums = {4, 1, 2, 1, 2};
-        SingleNumber sn = new SingleNumber();
+        SingleNumber1 sn = new SingleNumber1();
         System.out.println(sn.singleNumber(nums));
     }
 }
