@@ -15,9 +15,10 @@ Output:
 Explanation:
 2*3*13*157 = 12246 = N.
 */
-public class PrimeFactorizationUsingSieveOfEratosthenes {
+public class PrimeFactorizationUsingSmallestPrimeFactor {
 
     //TC:O(Nlog(logN)) + O(log2 N)
+    //SC:O(N)
     public static List<Integer> findPrimeFactorsUsingSpf(int N) {
         List<Integer> countPrimes = new ArrayList<>();
         int[] spf = getSmallestPrimeFactor(N);
