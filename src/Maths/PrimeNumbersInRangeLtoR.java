@@ -17,10 +17,12 @@ public class PrimeNumbersInRangeLtoR {
         List<Integer> countPrimes = new ArrayList<>();
         int[] primes = getSieve(n);
         int count = 0;
+        //storing prefixSum in primes array where it denotes the number of prime numbers till that index
         for (int i = 2; i <= n; i++) {
             count += primes[i];
             primes[i] = count;
         }
+        //now primes[i] denotes the number of prime numbers from 1 till the index i
         for (int[] query : queries) {
             int l = query[0];
             int r = query[1];
@@ -30,6 +32,7 @@ public class PrimeNumbersInRangeLtoR {
     }
 
     private static int[] getSieve(int n) {
+        //Sieve of Eratosthenes for calculating the number of primes till n
         int[] primes = new int[n + 1];
         Arrays.fill(primes, 1);
         primes[0] = 0;
