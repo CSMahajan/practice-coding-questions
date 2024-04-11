@@ -1,4 +1,4 @@
-package BitManipulation;
+package Maths;
 
 /*
 Check Prime Number
