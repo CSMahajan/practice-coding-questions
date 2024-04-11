@@ -1,7 +1,6 @@
 package Maths;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -18,35 +17,37 @@ Explanation:
 */
 public class PrimeFactorizationUsingSieveOfEratosthenes {
 
-    public static void sieve() {
-
-    }
-
-    public static List<Integer> findPrimeFactors(int N) {
+    //TC:O(Nlog(logN)) + O(log2 N)
+    public static List<Integer> findPrimeFactorsUsingSpf(int N) {
         List<Integer> countPrimes = new ArrayList<>();
-        int[] primes = getSieve(1000000);
-        int count = 0;
-        for (int i = 2; i <= N; i++) {
-            count += primes[i];
-            primes[i] = count;
+        int[] spf = getSmallestPrimeFactor(N);
+        while (N != 1) {
+            countPrimes.add(spf[N]);
+            N = N / spf[N];
         }
         return countPrimes;
     }
 
-    private static int[] getSieve(int n) {
-        int[] primes = new int[n + 1];
-        Arrays.fill(primes, 1);
+    private static int[] getSmallestPrimeFactor(int n) {
+        int[] spf = new int[n + 1];
+        for (int i = 2; i <= n; i++) {
+            spf[i] = i;
+        }
         for (int i = 2; i * i <= n; i++) {
-            if (primes[i] == 1) {
+            if (spf[i] == i) {
                 for (int j = i * i; j <= n; j += i) {
-                    primes[j] = 0;
+                    //placing its multiples with its smallest prime factor possible
+                    //only when if its not already marked because when next time newer number will be larger
+                    if (spf[j] == j) {
+                        spf[j] = i;
+                    }
                 }
             }
         }
-        return primes;
+        return spf;
     }
 
     public static void main(String[] args) {
-        System.out.println(findPrimeFactors(780));
+        System.out.println(findPrimeFactorsUsingSpf(780));
     }
 }
