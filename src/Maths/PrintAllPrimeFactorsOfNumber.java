@@ -21,6 +21,7 @@ public class PrintAllPrimeFactorsOfNumber {
             if (n % i == 0) {
                 primeFactors.add(i);
                 while (n % i == 0) {
+                    //reducing the number to avoid composite numbers if any,so number of iterations are reduced
                     n = n / i;
                 }
             }
